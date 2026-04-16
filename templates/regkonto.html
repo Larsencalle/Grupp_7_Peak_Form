@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>PeakForm - Skapa konto</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="split-layout">
+        <section class="vanster">
+            <p>PeakForm</p>
+            <h1>Skapa konto</h1>
+
+            <div class="form-box">
+                <form action="/skapa_konto" method="POST">
+                    <div class="form-group">
+                        <label for="namn">Namn: *</label>
+                        <input type="text" id="namn" name="namn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email: *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="losen">Lösenord: *</label>
+                        <input type="password" id="losen" name="losen" required>
+                    </div>
+                    
+                    <h3>Fysisk data (Valfritt)</h3>
+                    <div class="form-group">
+                        <label for="vikt">Vikt (kg):</label>
+                        <input type="number" id="vikt" name="vikt">
+                    </div>
+                    <div class="form-group">
+                        <label for="langd">Längd (cm):</label>
+                        <input type="number" id="langd" name="langd">
+                    </div>
+                    <div class="form-group">
+                        <label for="alder">Ålder:</label>
+                        <input type="number" id="alder" name="alder">
+                    </div>
+
+                    <button type="submit" class="form-knapp">Skapa konto</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="hoger">
+            <img src="https://images.unsplash.com/photo-1592588253414-887759037c2a?q=80&w=2070&auto=format&fit=crop" alt="Gymmiljö">
+        </section>
+    </div>
+
+</body>
+</html>

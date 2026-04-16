@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeakForm - Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <nav class="sidebar">
+            <h2>PeakForm</h2>
+            <ul>
+                <li><a href="/">Hem</a></li>
+                <li><a href="#">Min profil</a></li>
+                <li><a href="#" class="aktiv">Mina Program</a></li>
+                <li><a href="#">Övningsdatabas</a></li>
+                <li><a href="#">Logga Pass</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <h1>Välkommen till PeakForm!</h1>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                    <p>Avklarade pass denna månad:</p>
+                    <h2 class="gron-text">0</h2>
+                    <p style="font-size: 0.85rem; color: #aaa;">Dags att logga ditt första pass!</p>
+                </div>
+            </div>
+
+            <h2 class="gron-text">VÄLJ ETT PROGRAM ATT STARTA MED</h2>
+            
+            <div class="stats-row">
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" alt="Push pass">
+                    <p>STARTA PUSH</p>
+                </div>
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop" alt="Pull pass">
+                    <p>STARTA PULL</p>
+                </div>
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?q=80&w=2074&auto=format&fit=crop" alt="Legs pass">
+                    <p>STARTA LEGS</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="info-box" style="text-align: center; margin-top: 80px;">
+                <h3 style="color: #aaa;">Inget pass aktivt</h3>
+                <p style="color: #888; font-size: 0.9rem; line-height: 1.5;">Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga Pass' för att köra fritt.</p>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
