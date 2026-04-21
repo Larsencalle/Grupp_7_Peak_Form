@@ -225,3 +225,24 @@ img {
 .gron-text {
     color: #2d8a00;
 }
+
+.user-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.liten-knapp {
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: white;
+    border: 1px solid #444;
+}
+
+.liten-knapp.gron {
+    background-color: #2d8a00;
+    border: none;
+}

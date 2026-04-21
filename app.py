@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from db import get_db_connection
 
 app = Flask(__name__)
+app.secret_key = 'nyckel_peakform'
 
 
 # Startsidan 
@@ -22,7 +23,7 @@ def logga_in():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    sql = "SELECT * FROM peakform.users WHERE email = %s AND password_hash = %s"
+    sql = "SELECT user_id, email FROM peakform.users WHERE email = %s AND password_hash = %s"
     cursor.execute(sql, (email, losen))
     
     anvandare = cursor.fetchone()
@@ -31,6 +32,7 @@ def logga_in():
     conn.close()
 
     if anvandare:
+        session['user_id'] = anvandare[0] 
         print(f"Inloggning lyckades för: {email}")
         return redirect('/dashboard')
     else:
@@ -45,7 +47,9 @@ def regkonto():
 # Dashboarden
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    inloggad = 'user_id' in session
+    
+    return render_template('dashboard.html', logged_in=inloggad)
 
 @app.route('/skapa_konto', methods=['POST'])
 def skapa_konto():
@@ -63,6 +67,12 @@ def skapa_konto():
     conn.close()
 
     return redirect('/inlogg')
+
+@app.route('/logga_ut')
+def logga_ut():
+    session.pop('user_id', None)
+    return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
