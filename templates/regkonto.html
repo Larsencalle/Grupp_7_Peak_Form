@@ -13,6 +13,14 @@
             <h1>Skapa konto</h1>
 
             <div class="form-box">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="felmeddelande-box">
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
                 <form action="/skapa_konto" method="POST">
                     <div class="form-group">
                         <label for="namn">Namn: *</label>
@@ -24,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="losen">Lösenord: *</label>
-                        <input type="password" id="losen" name="losen" required>
+                        <input type="password" id="losen" name="losen" minlength="8" required>
                     </div>
                     
                     <h3>Fysisk data (Valfritt)</h3>

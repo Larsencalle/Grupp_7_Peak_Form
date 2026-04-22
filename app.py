@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from db import get_db_connection
 
 app = Flask(__name__)
@@ -59,8 +59,18 @@ def skapa_konto():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    sql = "INSERT INTO peakform.users (email, password_hash) VALUES (%s, %s)"
-    cursor.execute(sql, (email, losen))
+    sql_check = "SELECT user_id FROM peakform.users WHERE email = %s"
+    cursor.execute(sql_check, (email,))
+    existerande_anvandare = cursor.fetchone()
+
+    if existerande_anvandare:
+        cursor.close()
+        conn.close()
+        flash("E-postadressen är redan registrerad. Vänligen logga in eller välj en annan.")
+        return redirect('/regkonto')
+
+    sql_insert = "INSERT INTO peakform.users (email, password_hash) VALUES (%s, %s)"
+    cursor.execute(sql_insert, (email, losen))
     
     conn.commit()
     cursor.close()
