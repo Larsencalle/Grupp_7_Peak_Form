@@ -1,0 +1,248 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+
+.split-layout {
+    display: flex;
+    height: 100vh;
+}
+
+.split-layout section {
+    flex: 1;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.split-layout nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.split-layout nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.text-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.text-box h1 {
+    font-size: 8rem;
+    color: white;
+    margin: 0;
+}
+
+.text-box p {
+    font-size: 1.4rem;
+    color: white;       
+    font-weight: bold;  
+    margin-bottom: 30px;
+}
+
+.knapp, .form-knapp {
+    background-color: #2d8a00;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+.vanster {
+    background-color: #4a4a4a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.vanster h1 {
+    font-size: 5rem;
+    margin: 0 0 60px 0;
+}
+
+.form-box {
+    background-color: white;
+    color: black;
+    padding: 30px 40px;
+    border-radius: 20px;   
+    width: 400px; 
+    text-align: left;
+}
+
+.form-box h3 {
+    margin: 20px 0 10px 0;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px; 
+}
+
+.form-box .form-knapp {
+    display: block;
+    margin: 30px auto 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+
+.dashboard-body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background-color: #1c1c1c;
+    border-right: 1px solid #333;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+}
+
+.sidebar .aktiv {
+    color: #2d8a00;
+    font-weight: bold;
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.right-panel {
+    flex: 0 0 320px;
+    background: #181818;
+    border-left: 1px solid #333;
+    padding: 40px 25px;
+    overflow-y: auto;
+}
+
+.stats-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 150px;
+}
+
+.program-card {
+    width: 200px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.program-card img {
+    height: 120px;
+}
+
+.program-card p {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+}
+
+.info-box {
+    margin-bottom: 30px;
+}
+
+.ovnings-bild {
+    height: 180px;
+    border-radius: 10px;
+    border: 2px solid #2d8a00;
+    margin-bottom: 15px;
+}
+
+.gron-text {
+    color: #2d8a00;
+}
+
+.user-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.liten-knapp {
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: white;
+    border: 1px solid #444;
+}
+
+.liten-knapp.gron {
+    background-color: #2d8a00;
+    border: none;
+}

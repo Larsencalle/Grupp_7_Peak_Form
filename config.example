@@ -1,0 +1,8 @@
+Mall för databas uppgifter:
+
+[database]
+host = postgres.mau.se
+database = ditt_mau_id
+user = ditt_mau_id
+password = ditt_lösenord
+port = 55432
