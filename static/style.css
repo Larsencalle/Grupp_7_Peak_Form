@@ -1,11 +1,9 @@
-
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
 }
-
 
 .split-layout {
     display: flex;
@@ -21,7 +19,6 @@ img {
     height: 100%;
     object-fit: cover;
 }
-
 
 .split-layout nav {
     position: absolute;
@@ -62,7 +59,7 @@ img {
     margin-bottom: 30px;
 }
 
-.knapp, .form-knapp {
+.button, .form-button {
     background-color: #2d8a00;
     color: white;
     padding: 15px 40px;
@@ -75,8 +72,7 @@ img {
     font-size: 1rem;
 }
 
-
-.vanster {
+.left-section {
     background-color: #4a4a4a;
     color: white;
     display: flex;
@@ -85,7 +81,7 @@ img {
     align-items: center;
 }
 
-.vanster h1 {
+.left-section h1 {
     font-size: 5rem;
     margin: 0 0 60px 0;
 }
@@ -118,13 +114,12 @@ img {
     width: 250px; 
 }
 
-.form-box .form-knapp {
+.form-box .form-button {
     display: block;
     margin: 30px auto 0 auto;
     width: 100%;
     text-align: center;
 }
-
 
 .dashboard-body {
     background-color: #121212;
@@ -158,7 +153,7 @@ img {
     padding: 10px 0;
 }
 
-.sidebar .aktiv {
+.sidebar .active {
     color: #2d8a00;
     font-weight: bold;
 }
@@ -192,6 +187,11 @@ img {
     min-width: 150px;
 }
 
+.stat-subtitle {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
 .program-card {
     width: 200px;
     background: #1e1e1e;
@@ -213,16 +213,28 @@ img {
 
 .info-box {
     margin-bottom: 30px;
+    text-align: center;
+    margin-top: 80px;
 }
 
-.ovnings-bild {
+.info-box h3 {
+    color: #aaa;
+}
+
+.info-box p {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.exercise-image {
     height: 180px;
     border-radius: 10px;
     border: 2px solid #2d8a00;
     margin-bottom: 15px;
 }
 
-.gron-text {
+.green-text {
     color: #2d8a00;
 }
 
@@ -233,7 +245,7 @@ img {
     margin-bottom: 20px;
 }
 
-.liten-knapp {
+.small-button {
     padding: 8px 15px;
     text-decoration: none;
     border-radius: 5px;
@@ -242,7 +254,39 @@ img {
     border: 1px solid #444;
 }
 
-.liten-knapp.gron {
+.small-button.green {
     background-color: #2d8a00;
     border: none;
+}
+
+.profile-box {
+    background-color: #1e1e1e;
+    color: white;
+    border: 1px solid #333;
+    padding: 30px 40px;
+    border-radius: 20px;
+    width: 400px;
+    margin-top: 20px;
+}
+
+.profile-box p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.profile-divider {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 20px 0;
+}
+
+.profile-button {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.error-message-box {
+    color: red;
+    margin-bottom: 15px;
+    font-weight: bold;
 }

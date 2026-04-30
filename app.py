@@ -5,26 +5,27 @@ app = Flask(__name__)
 app.secret_key = 'nyckel_peakform'
 
 
-# Startsidan 
+#STARTSIDAN
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Inloggningssidan
+
+#INLOGGNING
 @app.route('/inlogg')
 def inlogg():
     return render_template('inlogg.html')
 
 @app.route('/logga_in', methods=['POST'])
 def logga_in():
-    email = request.form.get('username')
-    losen = request.form.get('password')
+    email = request.form.get('email')
+    password = request.form.get('password')
 
     conn = get_db_connection()
     cursor = conn.cursor()
 
     sql = "SELECT user_id, email FROM peakform.users WHERE email = %s AND password_hash = %s"
-    cursor.execute(sql, (email, losen))
+    cursor.execute(sql, (email, password))
     
     anvandare = cursor.fetchone()
 
@@ -33,28 +34,30 @@ def logga_in():
 
     if anvandare:
         session['user_id'] = anvandare[0] 
-        print(f"Inloggning lyckades för: {email}")
         return redirect('/dashboard')
     else:
-        print("Fel mejl eller lösenord!")
+        flash("Fel e-post eller lösenord. Försök igen.")
         return redirect('/inlogg')
 
-# Skapa konto-sidan
+
+#SKAPA KONTO
 @app.route('/regkonto')
 def regkonto():
     return render_template('regkonto.html')
 
-# Dashboarden
-@app.route('/dashboard')
-def dashboard():
-    inloggad = 'user_id' in session
-    
-    return render_template('dashboard.html', logged_in=inloggad)
-
 @app.route('/skapa_konto', methods=['POST'])
 def skapa_konto():
+    name = request.form.get('name')
     email = request.form.get('email')
-    losen = request.form.get('losen')
+    password = request.form.get('password')
+    
+    weight = request.form.get('weight')
+    height = request.form.get('height')
+    age = request.form.get('age')
+
+    weight = weight if weight else None
+    height = height if height else None
+    age = age if age else None
 
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -69,14 +72,40 @@ def skapa_konto():
         flash("E-postadressen är redan registrerad. Vänligen logga in eller välj en annan.")
         return redirect('/regkonto')
 
-    sql_insert = "INSERT INTO peakform.users (email, password_hash) VALUES (%s, %s)"
-    cursor.execute(sql_insert, (email, losen))
+    sql_insert = "INSERT INTO peakform.users (name, email, password_hash, weight, height, age) VALUES (%s, %s, %s, %s, %s, %s)"
+    cursor.execute(sql_insert, (name, email, password, weight, height, age))
     
     conn.commit()
     cursor.close()
     conn.close()
 
     return redirect('/inlogg')
+
+
+@app.route('/dashboard')
+def dashboard():
+    inloggad = 'user_id' in session
+    return render_template('dashboard.html', logged_in=inloggad)
+
+@app.route('/profil')
+def profil():
+    if 'user_id' not in session:
+        flash("Du måste logga in för att se din profil.")
+        return redirect('/inlogg')
+
+    user_id = session['user_id']
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    sql = "SELECT name, email, weight, height, age FROM peakform.users WHERE user_id = %s"
+    cursor.execute(sql, (user_id,))
+    user_data = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    return render_template('profile.html', logged_in=True, user=user_data)
+
 
 @app.route('/logga_ut')
 def logga_ut():
