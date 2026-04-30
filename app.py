@@ -8,16 +8,19 @@ app.secret_key = 'nyckel_peakform'
 #STARTSIDAN
 @app.route('/')
 def index():
+    """Visar startsidan för PeakForm."""
     return render_template('index.html')
 
 
 #INLOGGNING
-@app.route('/inlogg')
-def inlogg():
-    return render_template('inlogg.html')
+@app.route('/login')
+def login():
+    """Visar inloggningssidan."""
+    return render_template('login.html')
 
-@app.route('/logga_in', methods=['POST'])
-def logga_in():
+@app.route('/process_login', methods=['POST'])
+def process_login():
+    """Hanterar inloggningen. Kollar om e-post och lösenord stämmer i databasen."""
     email = request.form.get('email')
     password = request.form.get('password')
 
@@ -27,26 +30,29 @@ def logga_in():
     sql = "SELECT user_id, email FROM peakform.users WHERE email = %s AND password_hash = %s"
     cursor.execute(sql, (email, password))
     
-    anvandare = cursor.fetchone()
+    user = cursor.fetchone()
 
     cursor.close()
     conn.close()
 
-    if anvandare:
-        session['user_id'] = anvandare[0] 
+    if user:
+        #Sparar användarens unika ID i sessionen för att hålla personen inloggad överallt
+        session['user_id'] = user[0] 
         return redirect('/dashboard')
     else:
         flash("Fel e-post eller lösenord. Försök igen.")
-        return redirect('/inlogg')
+        return redirect('/login')
 
 
 #SKAPA KONTO
-@app.route('/regkonto')
-def regkonto():
-    return render_template('regkonto.html')
+@app.route('/register')
+def register():
+    """Visar sidan för att skapa ett nytt konto."""
+    return render_template('register.html')
 
-@app.route('/skapa_konto', methods=['POST'])
-def skapa_konto():
+@app.route('/process_register', methods=['POST'])
+def process_register():
+    """Sparar en ny användare i databasen om e-posten inte redan finns."""
     name = request.form.get('name')
     email = request.form.get('email')
     password = request.form.get('password')
@@ -55,6 +61,7 @@ def skapa_konto():
     height = request.form.get('height')
     age = request.form.get('age')
 
+    #Omvandlar tomma fält till None så att databasen lagrar de som NULL
     weight = weight if weight else None
     height = height if height else None
     age = age if age else None
@@ -62,36 +69,42 @@ def skapa_konto():
     conn = get_db_connection()
     cursor = conn.cursor()
 
+    #Kontrollerar först om e-posten redan används för att förhindra dubletter
     sql_check = "SELECT user_id FROM peakform.users WHERE email = %s"
     cursor.execute(sql_check, (email,))
-    existerande_anvandare = cursor.fetchone()
+    existing_user = cursor.fetchone()
 
-    if existerande_anvandare:
+    if existing_user:
         cursor.close()
         conn.close()
         flash("E-postadressen är redan registrerad. Vänligen logga in eller välj en annan.")
-        return redirect('/regkonto')
+        return redirect('/register')
 
     sql_insert = "INSERT INTO peakform.users (name, email, password_hash, weight, height, age) VALUES (%s, %s, %s, %s, %s, %s)"
     cursor.execute(sql_insert, (name, email, password, weight, height, age))
     
+    #Commit krävs för att INSERT frågan ska permanent sparas i databasen
     conn.commit()
     cursor.close()
     conn.close()
 
-    return redirect('/inlogg')
+    return redirect('/login')
 
-
+#DASHBOARD
 @app.route('/dashboard')
 def dashboard():
-    inloggad = 'user_id' in session
-    return render_template('dashboard.html', logged_in=inloggad)
+    """Visar användarens dashboard och kollar om personen är inloggad."""
+    is_logged_in = 'user_id' in session
+    return render_template('dashboard.html', logged_in=is_logged_in)
 
-@app.route('/profil')
-def profil():
+@app.route('/profile')
+def profile():
+    """Visar användarens profil med information från databasen. Kräver inloggning."""
+    
+    #Skickar användaren till inloggningen om de saknar en aktiv session
     if 'user_id' not in session:
         flash("Du måste logga in för att se din profil.")
-        return redirect('/inlogg')
+        return redirect('/login')
 
     user_id = session['user_id']
     conn = get_db_connection()
@@ -107,8 +120,9 @@ def profil():
     return render_template('profile.html', logged_in=True, user=user_data)
 
 
-@app.route('/logga_ut')
-def logga_ut():
+@app.route('/log_out')
+def log_out():
+    """Loggar ut användaren genom att rensa sessionen."""
     session.pop('user_id', None)
     return redirect('/')
 

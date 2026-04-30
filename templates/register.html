@@ -13,6 +13,7 @@
             <h1>Skapa konto</h1>
 
             <div class="form-box">
+                <!--Visar felmeddelanden, tex om e-posten redan finns-->
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         <div class="error-message-box">
@@ -21,7 +22,7 @@
                     {% endif %}
                 {% endwith %}
 
-                <form action="/skapa_konto" method="POST">
+                <form action="/process_register" method="POST">
                     <div class="form-group">
                         <label for="name">Namn: *</label>
                         <input type="text" id="name" name="name" required>
