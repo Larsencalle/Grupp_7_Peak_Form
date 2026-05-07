@@ -10,6 +10,7 @@
 
     <div class="dashboard-layout">
         
+<<<<<<< Updated upstream
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
@@ -29,6 +30,27 @@
                 {% endif %}
             </ul>
         </nav>
+=======
+<nav class="sidebar">
+    <h2>PeakForm</h2>
+    <ul>
+        <li><a href="/">Hem</a></li>
+        
+        {% if logged_in %}
+            <li><a href="#">Min profil</a></li>
+            <li><a href="#" class="aktiv">Mina Program</a></li>
+        {% else %}
+            <li><a href="#" class="aktiv">Skapa program</a></li>
+        {% endif %}
+        
+        <li><a href="excercise.html">Övningsdatabas</a></li>
+        
+        {% if logged_in %}
+            <li><a href="#">Logga Pass</a></li>
+        {% endif %}
+    </ul>
+</nav>
+>>>>>>> Stashed changes
 
         <main class="main-content">
             <div class="user-actions">
