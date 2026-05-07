@@ -10,34 +10,35 @@
 
     <div class="dashboard-layout">
         
-<nav class="sidebar">
-    <h2>PeakForm</h2>
-    <ul>
-        <li><a href="/">Hem</a></li>
-        
-        {% if logged_in %}
-            <li><a href="#">Min profil</a></li>
-            <li><a href="#" class="aktiv">Mina Program</a></li>
-        {% else %}
-            <li><a href="#" class="aktiv">Skapa program</a></li>
-        {% endif %}
-        
-        <li><a href="#">Övningsdatabas</a></li>
-        
-        {% if logged_in %}
-            <li><a href="#">Logga Pass</a></li>
-        {% endif %}
-    </ul>
-</nav>
+        <nav class="sidebar">
+            <h2>PeakForm</h2>
+            <ul>
+                <li><a href="/">Hem</a></li>
+                <!--Anpassar menyn baserat på om användaren är inloggad eller inte-->
+                {% if logged_in %}
+                    <li><a href="/profile">Min profil</a></li>
+                    <li><a href="/dashboard" class="active">Mina Program</a></li>
+                {% else %}
+                    <li><a href="#" class="active">Skapa program</a></li>
+                {% endif %}
+                
+                <li><a href="#">Övningsdatabas</a></li>
+                
+                {% if logged_in %}
+                    <li><a href="#">Logga Pass</a></li>
+                {% endif %}
+            </ul>
+        </nav>
 
         <main class="main-content">
             <div class="user-actions">
+                <!--Visar logga in knapp om utloggad, annars utloggningsknappen-->
                 {% if not logged_in %}
-                    <a href="/inlogg" class="liten-knapp">Logga in</a>
-                    <a href="/regkonto" class="liten-knapp gron">Skapa konto</a>
+                    <a href="/login" class="small-button">Logga in</a>
+                    <a href="/register" class="small-button green">Skapa konto</a>
                 {% else %}
                     <span>Inloggad som medlem</span>
-                    <a href="/logga_ut" class="liten-knapp">Logga ut</a>
+                    <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
 
@@ -47,13 +48,13 @@
             <div class="stats-row">
                 <div class="stat-box">
                     <p>Avklarade pass denna månad:</p>
-                    <h2 class="gron-text">0</h2>
-                    <p style="font-size: 0.85rem; color: #aaa;">Dags att logga ditt första pass!</p>
+                    <h2 class="green-text">0</h2>
+                    <p class="stat-subtitle">Dags att logga ditt första pass!</p>
                 </div>
             </div>
             {% endif %}
 
-            <h2 class="gron-text">VÄLJ ETT PROGRAM ATT STARTA MED</h2>
+            <h2 class="green-text">VÄLJ ETT PROGRAM ATT STARTA MED</h2>
             
             <div class="stats-row">
                 <div class="program-card">
@@ -72,9 +73,9 @@
         </main>
 
         <aside class="right-panel">
-            <div class="info-box" style="text-align: center; margin-top: 80px;">
-                <h3 style="color: #aaa;">Inget pass aktivt</h3>
-                <p style="color: #888; font-size: 0.9rem; line-height: 1.5;">Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga Pass' för att köra fritt.</p>
+            <div class="info-box">
+                <h3>Inget pass aktivt</h3>
+                <p>Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga Pass' för att köra fritt.</p>
             </div>
         </aside>
 

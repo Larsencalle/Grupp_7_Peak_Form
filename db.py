@@ -2,7 +2,7 @@ import psycopg2
 import configparser
 
 def get_db_connection():
-
+    """Skapar och returnerar en koppling till databasen med hjälp av config.ini"""
     config = configparser.ConfigParser()
     config.read('config.ini')
 
