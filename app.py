@@ -121,8 +121,59 @@ def profile():
 
 @app.route('/edit_profile')
 def edit_profile():
-    return render_template('edit_profile.html')
+    """Visar formuläret för att redigera profiluppgifter."""
+    if 'user_id' not in session:
+        return redirect('/login')
 
+    user_id = session['user_id']
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Hämtar nuvarande data så att T:s HTML-formulär kan förifyllas
+    sql = "SELECT name, email, weight, height, age FROM peakform.users WHERE user_id = %s"
+    cursor.execute(sql, (user_id,))
+    user_data = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    return render_template('edit_profile.html', logged_in=True, user=user_data)
+
+
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    """Tar emot data från formuläret och uppdaterar databasen."""
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    user_id = session['user_id']
+    
+    name = request.form.get('name')
+    weight = request.form.get('weight')
+    height = request.form.get('height')
+    age = request.form.get('age')
+
+    weight = weight if weight else None
+    height = height if height else None
+    age = age if age else None
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    sql = """
+        UPDATE peakform.users 
+        SET name = %s, weight = %s, height = %s, age = %s 
+        WHERE user_id = %s
+    """
+    cursor.execute(sql, (name, weight, height, age, user_id))
+    
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+    return redirect('/profile')
 
 @app.route('/log_out')
 def log_out():
