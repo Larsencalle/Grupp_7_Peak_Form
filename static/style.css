@@ -367,24 +367,44 @@ img {
 
     .sidebar, .right-panel {
         flex: none;
-        width: 100%;
         border: none;
     }
 
     .main-content {
         padding: 20px;
+        overflow-x: hidden;
     }
 
     .stats-row {
         flex-direction: column;
+        gap: 10px;
+        justify-content: center;
     }
 
     .stat-box {
         width: 100%;
+        min-width: auto;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .stat-box h3, p, h2 {
+        padding-left: 5px;
     }
 
     .program-card {
         width: 100%;
+        min-width: auto;
     }
 
+    .info-box {
+        padding: 0px;
+        margin: 0px;
+
+    }
+
+    #span1 {
+        align-self: center;
+    
+    }
 }
