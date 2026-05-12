@@ -145,5 +145,6 @@ def log_out():
     session.pop('user_id', None)
     return redirect('/')
 
+
 if __name__ == '__main__':
     app.run(debug=True)
