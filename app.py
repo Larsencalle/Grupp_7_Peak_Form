@@ -119,6 +119,10 @@ def profile():
 
     return render_template('profile.html', logged_in=True, user=user_data)
 
+@app.route('/edit_profile')
+def edit_profile():
+    return render_template('edit_profile-html')
+
 
 @app.route('/log_out')
 def log_out():
