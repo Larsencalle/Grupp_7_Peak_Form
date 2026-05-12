@@ -13,13 +13,13 @@
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
-                <li><a href="/">Hem</a></li>
+                <li><a href="/dashboard" class="active">Hem</a></li>
                 <!--Anpassar menyn baserat på om användaren är inloggad eller inte-->
                 {% if logged_in %}
                     <li><a href="/profile">Min profil</a></li>
-                    <li><a href="/dashboard" class="active">Mina Program</a></li>
+                    <li><a href="/my_program">Mina Program</a></li>
                 {% else %}
-                    <li><a href="#" class="active">Skapa program</a></li>
+                    <li><a href="/create_program">Skapa program</a></li>
                 {% endif %}
                 
                 <li><a href="/excercise">Övningsdatabas</a></li>

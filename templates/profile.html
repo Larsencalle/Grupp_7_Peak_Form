@@ -13,7 +13,7 @@
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
-                <li><a href="/">Hem</a></li>
+                <li><a href="/dashboard">Hem</a></li>
                 <li><a href="/profile" class="active">Min profil</a></li>
                 <li><a href="/dashboard">Mina Program</a></li>
                 <li><a href="#">Övningsdatabas</a></li>
@@ -29,13 +29,13 @@
             <h1>Min Profil</h1>
 
             <div class="profile-box">
-                <h2 class="green-text">Konto-uppgifter</h2>
+                <h2 class="green-text">Mina uppgifter</h2>
                 <p><strong>Namn:</strong> {{ user[0] }}</p>
                 <p><strong>Email:</strong> {{ user[1] }}</p>
                 
                 <hr class="profile-divider">
 
-                <h2 class="green-text">Min Fysiska Data</h2>
+                <h2 class="green-text">Min fysiska data</h2>
                 <p><strong>Längd:</strong> {% if user[3] %}{{ user[3] }} cm{% else %}Ej angivet{% endif %}</p>
                 <p><strong>Vikt:</strong> {% if user[2] %}{{ user[2] }} kg{% else %}Ej angivet{% endif %}</p>
                 <p><strong>Ålder:</strong> {% if user[4] %}{{ user[4] }} år{% else %}Ej angivet{% endif %}</p>
