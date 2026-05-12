@@ -8,15 +8,15 @@
 </head>
 <body class="dashboard-body">
 
-    <div class="dashboard-layout"></div>
+    <div class="dashboard-layout">
 
         <nav class="sidebar">
             <h1>PeakForm</h1>
             <ul>
                 <li><a href="/dashboard">Hem</a></li>
-                <li><a href="/profile" class=""active>Min profil</a></li>
+                <li><a href="/profile" class="active">Min profil</a></li>
                 <li><a href="/my_program">Mina program</a></li>
-                <li><a href="/excersice">Övningsdatabas</a></li>
+                <li><a href="/excersise">Övningsdatabas</a></li>
                 <li><a href="#">Logga Pass</a></li>
             </ul>
         </nav>
@@ -25,7 +25,7 @@
             <h2>Redigera profil</h2>
 
             <div class="profile-box">
-                <form action="/edit_profile" method="POST">
+                <form action="/update_profile" method="POST">
 
                     <label for="name">Namn</label>
                     <input type="text" id="name" name="name" value="{{ user[0] }}">
@@ -49,7 +49,7 @@
 
             </div>
         </main>
-
+</div>
 </body>
 
 </html>
