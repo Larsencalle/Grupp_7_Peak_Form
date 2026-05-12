@@ -119,13 +119,31 @@ def profile():
 
     return render_template('profile.html', logged_in=True, user=user_data)
 
+@app.route('/exercise')
+def exercise():
+    """Hämtar alla övningar från databasen och visar övningsdatabase"""
+    
+    is_logged_in = 'user_id' in session
+
+    conn = get_db_connection()
+    if conn is None:
+        return "Kunde inte ansluta till databasen.", 500
+    cursor = conn.cursor()
+
+    sql = "SELECT name, description, category, difficulty_level, img_url FROM peakform.exercises ORDER BY category DESC"
+    cursor.execute(sql)
+    exercises_data = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return render_template('exercise.html', exercises=exercises_data, logged_in=is_logged_in)
 
 @app.route('/log_out')
 def log_out():
     """Loggar ut användaren genom att rensa sessionen."""
     session.pop('user_id', None)
     return redirect('/')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
