@@ -129,7 +129,6 @@ def edit_profile():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Hämtar nuvarande data så att T:s HTML-formulär kan förifyllas
     sql = "SELECT name, email, weight, height, age FROM peakform.users WHERE user_id = %s"
     cursor.execute(sql, (user_id,))
     user_data = cursor.fetchone()
