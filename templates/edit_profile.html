@@ -26,11 +26,10 @@
 
             <div class="profile-box">
                 <form action="/update_profile" method="POST">
+                    <p><strong>Email:</strong> {{ user[1] }}</p>
 
                     <label for="name">Namn</label>
                     <input type="text" id="name" name="name" value="{{ user[0] }}">
-
-                    <p><strong>Email:</strong> {{ user[1] }}</p>
 
                     <label for="weight">Vikt</label>
                     <input type="number" id="weight" name="weight" value="{{ user[2] }}">
