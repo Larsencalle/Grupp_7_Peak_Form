@@ -306,3 +306,85 @@ img {
     margin-bottom: 15px;
     font-weight: bold;
 }
+
+/* Mobil anpassning */
+
+@media screen and (max-width: 480px) {
+    .split-layout {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .split-layout section{
+        width: 100%;
+        min-height: 50vh;
+    }
+
+    .left-section h1 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .text-box h1 {
+        font-size: 3rem;
+    }
+
+    .text-box p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .form-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-group input {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .split-layout nav {
+        position: static;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .split-layout nav a {
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .dashboard-layout {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar, .right-panel {
+        flex: none;
+        width: 100%;
+        border: none;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .stats-row {
+        flex-direction: column;
+    }
+
+    .stat-box {
+        width: 100%;
+    }
+
+    .program-card {
+        width: 100%;
+    }
+
+}
