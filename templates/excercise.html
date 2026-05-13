@@ -41,43 +41,31 @@
                 {% endif %}
             </div>
 
+            <form method="GET" action="/search">
+                <input type="text" name="q" placeholder="Sök efter övningar..." required>
+                <button type="submit" class="liten-knapp gron">Sök</button>
+            </form>
+
             <h1> PeakForm Övningsdatabas </h1>
 
             <h2 class="gron-text">ÖVNINGAR</h2>
             
             <div class="stats-row">
-                <p>PUSH</p>
-                <div class="program-card">
-                    <img src="young-asian-man-doing-bench-press-training-in-a-sports-gym.jpg" alt="BÄNKPRESS">
-                    <p>BÄNKPRESS</p>
-                </div>
-                <div class="program-card">
-                    <img src="premium_photo-1663036253291-f4d9a6008566" alt="MILITÄRPRESS">
-                    <p>MILITÄRPRESS</p>
-                </div>
-                <div class="program-card">
-                    <img src="determined-sportsman-lifting-dumbbells-while-lying-on-bench-in-gym.jpg" alt="LUTANDE HANTELPRESS">
-                    <p>LUTANDE HANTELPRESS</p>
-                </div>
-                 <div class="program-card">
-                    <img src="premium_photo-1663036253291-f4d9a6008566" alt="SIDOLYFT MED HANTLAR">
-                    <p>SIDOLYFT MED HANTLAR</p>
-                </div>
-                <div class="program-card">
-                    <img src="premium_photo-1679635697473-a9f7464e3e26" alt="DIPS">
-                    <p>DIPS</p>
-                </div>
-                 <div class="program-card">
-                    <img src="photo-1639496906431-f732f9478600" alt="TRICEPS PUSHDOWNS">
-                    <p>TRICEPS PUSHDOWNS</p>
-                </div>
+                {% for exercise in exercises %}
+                    <a href="/exercise/{{ exercise[0] }}">
+                        <div class="program-card">
+                            <img src="{{ exercise[5] }}" alt="{{ exercise[1] }}">
+                            <p>{{ exercise[1] }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
         </main>
 
         <aside class="right-panel">
-            <div class="info-box" style="text-align: center; margin-top: 80px;">
-                <h3 style="color: #aaa;">Inget pass aktivt</h3>
-                <p style="color: #888; font-size: 0.9rem; line-height: 1.5;">Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga Pass' för att köra fritt.</p>
+            <div class="info-box">
+                <h3>Inget pass aktivt</h3>
+                <p>Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga Pass' för att köra fritt.</p>
             </div>
         </aside>
 

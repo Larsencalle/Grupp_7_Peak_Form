@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeakForm - Sökresultat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <nav class="sidebar">
+            <h2>PeakForm</h2>
+            <ul>
+                <li><a href="/">Hem</a></li>
+                
+                {% if logged_in %}
+                    <li><a href="/profile">Min profil</a></li>
+                    <li><a href="/dashboard">Mina Program</a></li>
+                {% else %}
+                    <li><a href="#">Skapa program</a></li>
+                {% endif %}
+                
+                <li><a href="/excercise" class="aktiv">Övningsdatabas</a></li>
+                
+                {% if logged_in %}
+                    <li><a href="#">Logga Pass</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="user-actions">
+                {% if not logged_in %}
+                    <a href="/login" class="liten-knapp">Logga in</a>
+                    <a href="/register" class="liten-knapp gron">Skapa konto</a>
+                {% else %}
+                    <span>Inloggad som medlem</span>
+                    <a href="/log_out" class="liten-knapp">Logga ut</a>
+                {% endif %}
+            </div>
+
+            <a href="/excercise" class="liten-knapp">← Tillbaka</a>
+
+            <h1>Sökresultat för "{{ query }}"</h1>
+
+            {% if results %}
+                <p>Hittade {{ results|length }} övning(ar)</p>
+                
+                <div class="stats-row">
+                    {% for exercise in results %}
+                        <a href="/exercise/{{ exercise[0] }}">
+                            <div class="program-card">
+                                <img src="{{ exercise[5] }}" alt="{{ exercise[1] }}">
+                                <p>{{ exercise[1] }}</p>
+                                <small>{{ exercise[3] }}</small>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="info-box">
+                    <h2>Inga resultat hittades</h2>
+                    <p>Försök med andra sökord eller bläddra i all övningsdatabasen.</p>
+                    <a href="/excercise" class="liten-knapp gron">Till övningsdatabasen</a>
+                </div>
+            {% endif %}
+        </main>
+
+        <aside class="right-panel">
+            <div class="info-box">
+                <h3>Sök tips</h3>
+                <p>Du kan söka på övningens namn eller beskrivning för att hitta vad du letar efter.</p>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
