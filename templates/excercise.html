@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeakForm - Excersice</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+<nav class="sidebar">
+    <h2>PeakForm Excersice</h2>
+    <ul>
+        <li><a href="/">Hem</a></li>
+        
+        {% if logged_in %}
+            <li><a href="#">Min profil</a></li>
+            <li><a href="#" class="aktiv">Mina Program</a></li>
+        {% else %}
+            <li><a href="#" class="aktiv">Skapa program</a></li>
+        {% endif %}
+        
+        <li><a href="#">Övningsdatabas</a></li>
+        
+        {% if logged_in %}
+            <li><a href="#">Logga Pass</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+        <main class="main-content">
+            <div class="user-actions">
+                {% if not logged_in %}
+                    <a href="/inlogg" class="liten-knapp">Logga in</a>
+                    <a href="/regkonto" class="liten-knapp gron">Skapa konto</a>
+                {% else %}
+                    <span>Inloggad som medlem</span>
+                    <a href="/logga_ut" class="liten-knapp">Logga ut</a>
+                {% endif %}
+            </div>
+
+            <form method="GET" action="/search">
+                <input type="text" name="q" placeholder="Sök efter övningar..." required>
+                <button type="submit" class="liten-knapp gron">Sök</button>
+            </form>
+
+            <h1> PeakForm Övningsdatabas </h1>
+
+            <h2 class="gron-text">ÖVNINGAR</h2>
+            
+            <div class="stats-row">
+                {% for exercise in exercises %}
+                    <a href="/exercise/{{ exercise[0] }}">
+                        <div class="program-card">
+                            <img src="{{ exercise[5] }}" alt="{{ exercise[1] }}">
+                            <p>{{ exercise[1] }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="info-box">
+                <h3>Inget pass aktivt</h3>
+                <p>Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga Pass' för att köra fritt.</p>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
