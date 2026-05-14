@@ -251,6 +251,7 @@ img {
     text-align: center;
     font-weight: bold;
     margin: 0;
+    border: none;
 }
 
 .info-box {
@@ -332,6 +333,11 @@ img {
     box-sizing: border-box;
     width: 100%;
     text-align: center;
+}
+
+#span1 {
+        align-self: center;
+        margin-top: 15px;
 }
 
 
@@ -436,10 +442,5 @@ img {
         padding: 0px;
         margin: 0px;
 
-    }
-
-    #span1 {
-        align-self: center;
-    
     }
 }
