@@ -119,7 +119,7 @@ def profile():
 
     return render_template('profile.html', logged_in=True, user=user_data)
 
-@app.route('/excercise')
+@app.route('/exercise')
 def exercise():
     """Hämtar alla övningar från databasen och visar övningsdatabase"""
     
@@ -137,7 +137,7 @@ def exercise():
     cursor.close()
     conn.close()
 
-    return render_template('excercise.html', exercises=exercises_data, logged_in=is_logged_in)
+    return render_template('exercise.html', exercises=exercises_data, logged_in=is_logged_in)
 
 @app.route('/search', methods=['GET'])
 def search():
@@ -146,7 +146,7 @@ def search():
     is_logged_in = 'user_id' in session
     
     if not query:
-        return redirect('/excercise')
+        return redirect('/exercise')
     
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -180,7 +180,7 @@ def exercise_detail(exercise_id):
     
     if not exercise:
         flash("Övningen hittades inte.")
-        return redirect('/excercise')
+        return redirect('/exercise')
     
     return render_template('exercise_detail.html', exercise=exercise, logged_in=is_logged_in)
 @app.route('/edit_profile')
