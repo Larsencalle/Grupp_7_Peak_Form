@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeakForm - Skapa program</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <nav class="sidebar">
+            <h2>PeakForm</h2>
+            <ul>
+                <li><a href="/dashboard">Hem</a></li>
+                {% if logged_in %}
+                    <li><a href="/profile">Min profil</a></li>
+                    <li><a href="/my_program" class="active">Mina Program</a></li>
+                {% else %}
+                    <li><a href="/create_program" class="active">Skapa program</a></li>
+                {% endif %}
+                <li><a href="/exercise">Övningsdatabas</a></li>
+                {% if logged_in %}
+                    <li><a href="#">Logga Pass</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="user-actions">
+                {% if not logged_in %}
+                    <a href="/login" class="small-button">Logga in</a>
+                    <a href="/register" class="small-button green">Skapa konto</a>
+                {% else %}
+                    <span id="span1">Inloggad som medlem</span>
+                    <a href="/log_out" class="small-button">Logga ut</a>
+                {% endif %}
+            </div>
+
+            <h1>Skapa ett nytt träningsprogram</h1>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="error-message-box">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="profile-box create-program-box">
+                <form action="/save_program" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="program_name">Programmets namn:</label>
+                        <input type="text" id="program_name" name="program_name" placeholder="T.ex. Sommar-Push" required>
+                    </div>
+
+                    <hr class="profile-divider">
+
+                    <h2 class="green-text">Välj övningar</h2>
+                    
+                    <div class="exercise-list">
+                        {% for exercise in exercises %}
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="ex_{{ exercise[0] }}" name="selected_exercises" value="{{ exercise[0] }}">
+                            <label for="ex_{{ exercise[0] }}">
+                                <strong>{{ exercise[1] }}</strong> <span class="stat-subtitle">({{ exercise[2] }})</span>
+                            </label>
+                            <a href="/exercise/{{ exercise[0] }}" class="info-link" target="_blank">Detaljer</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <button type="submit" class="form-button profile-button">Spara Program</button>
+                </form>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="info-box">
+                <h3>Skapa program</h3>
+                <p>Ge ditt program ett namn och bocka för de övningar du vill inkludera. Klicka sedan på spara för att lägga till det i din profil.</p>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
