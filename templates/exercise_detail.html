@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeakForm - {{ exercise[1] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <nav class="sidebar">
+            <h2>PeakForm</h2>
+            <ul>
+                <li><a href="/dashboard">Hem</a></li>
+                
+                {% if logged_in %}
+                    <li><a href="/profile">Min profil</a></li>
+                    <li><a href="/my_program">Mina Program</a></li>
+                {% else %}
+                    <li><a href="/create_program">Skapa program</a></li>
+                {% endif %}
+                
+                <li><a href="/excercise" class="aktiv">Övningsdatabas</a></li>
+                
+                {% if logged_in %}
+                    <li><a href="#">Logga Pass</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="user-actions">
+                {% if not logged_in %}
+                    <a href="/login" class="liten-knapp">Logga in</a>
+                    <a href="/register" class="liten-knapp gron">Skapa konto</a>
+                {% else %}
+                    <span>Inloggad som medlem</span>
+                    <a href="/log_out" class="liten-knapp">Logga ut</a>
+                {% endif %}
+            </div>
+
+            <a href="/excercise" class="liten-knapp">← Tillbaka</a>
+
+            <h1>{{ exercise[1] }}</h1>
+
+            <div class="exercise-image">
+                <img src="{{ exercise[5] }}" alt="{{ exercise[1] }}">
+            </div>
+
+            <div class="exercise-info">
+                <div class="exercise-meta">
+                    <p><strong>Kategori:</strong> {{ exercise[3] }}</p>
+                    <p><strong>Svårighetsgrad:</strong> 
+                        {% if exercise[4] == 1 %}
+                            Lätt 
+                        {% elif exercise[4] == 2 %}
+                            Medel 
+                        {% elif exercise[4] == 3 %}
+                            Svår 
+                        {% else %}
+                            {{ exercise[4] }}
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="exercise-description">
+                    <h3>Beskrivning</h3>
+                    <p>{{ exercise[2] if exercise[2] else 'Ingen beskrivning tillgänglig.' }}</p>
+                </div>
+
+                <div class="exercise-actions">
+                    {% if logged_in %}
+                        <button class="liten-knapp gron">Lägg till i program</button>
+                    {% else %}
+                        <p>Logga in för att lägga till övningar i dina program</p>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-panel">
+            <div class="info-box">
+                <h3>Tips</h3>
+                <p>Lägg till denna övning i ett av dina program för att börja träna!</p>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
