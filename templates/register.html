@@ -2,6 +2,7 @@
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeakForm - Skapa konto</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -12,6 +13,7 @@
             <p>PeakForm</p>
             <h1>Skapa konto</h1>
 
+            <a href="/dashboard" class="small-button">← Tillbaka</a>
             <div class="form-box">
                 <!--Visar felmeddelanden, tex om e-posten redan finns-->
                 {% with messages = get_flashed_messages() %}

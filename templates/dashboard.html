@@ -24,7 +24,7 @@
                     <li><a href="/create_program">Skapa program</a></li>
                 {% endif %}
 
-                <li><a href="/excercise">Övningsdatabas</a></li>
+                <li><a href="/exercise">Övningsdatabas</a></li>
 
                 {% if logged_in %}
                 <li><a href="#">Logga Pass</a></li>
@@ -39,7 +39,7 @@
                 <a href="/login" class="small-button">Logga in</a>
                 <a href="/register" class="small-button green">Skapa konto</a>
                 {% else %}
-                <span>Inloggad som medlem</span>
+                <span id="span1">Inloggad som medlem</span>
                 <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
