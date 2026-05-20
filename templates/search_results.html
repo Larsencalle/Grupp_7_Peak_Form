@@ -33,15 +33,15 @@
         <main class="main-content">
             <div class="user-actions">
                 {% if not logged_in %}
-                    <a href="/login" class="liten-knapp">Logga in</a>
-                    <a href="/register" class="liten-knapp gron">Skapa konto</a>
+                    <a href="/login" class="small-button">Logga in</a>
+                    <a href="/register" class="small-button green">Skapa konto</a>
                 {% else %}
-                    <span>Inloggad som medlem</span>
-                    <a href="/log_out" class="liten-knapp">Logga ut</a>
+                    <span id="span1">Inloggad som medlem</span>
+                    <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
 
-            <a href="/exercise" class="liten-knapp">← Tillbaka</a>
+            <a href="/exercise" class="small-button">← Tillbaka</a>
 
             <h1>Sökresultat för "{{ query }}"</h1>
 
@@ -50,11 +50,11 @@
                 
                 <div class="stats-row">
                     {% for exercise in results %}
-                        <a href="/exercise/{{ exercise[0] }}">
+                        <a href="/exercise/{{ exercise[0] }}" class="exercise-card-link">
                             <div class="program-card">
                                 <img src="{{ exercise[5] }}" alt="{{ exercise[1] }}">
                                 <p>{{ exercise[1] }}</p>
-                                <small>{{ exercise[3] }}</small>
+                                <small class="category-label">{{ exercise[3] }}</small>
                             </div>
                         </a>
                     {% endfor %}
@@ -63,7 +63,7 @@
                 <div class="info-box">
                     <h2>Inga resultat hittades</h2>
                     <p>Försök med andra sökord eller bläddra i all övningsdatabasen.</p>
-                    <a href="/exercise" class="liten-knapp gron">Till övningsdatabasen</a>
+                    <a href="/exercise" class="small-button green">Till övningsdatabasen</a>
                 </div>
             {% endif %}
         </main>
