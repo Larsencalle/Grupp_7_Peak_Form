@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, session, flash
 from db import get_db_connection
-from utils import login_required
+#from utils import login_required
 
-excercises_bp = Blueprint('excercises', __name__)
+exercises_bp = Blueprint('exercises', __name__)
 
-@excercises_bp.route('/exercise')
+@exercises_bp.route('/exercise')
 def exercise():
     """Hämtar alla övningar från databasen och visar övningsdatabase"""
     
@@ -24,7 +24,7 @@ def exercise():
 
     return render_template('exercise.html', exercises=exercises_data, logged_in=is_logged_in)
 
-@excercises_bp.route('/search', methods=['GET'])
+@exercises_bp.route('/search', methods=['GET'])
 def search():
     """Söker efter övningar baserat på användarens sökord"""
     query = request.args.get('q', '').strip()
@@ -46,7 +46,7 @@ def search():
     
     return render_template('search_results.html', results=results, query=query, logged_in=is_logged_in)
 
-@excercises_bp.route('/exercise/<int:exercise_id>')
+@exercises_bp.route('/exercise/<int:exercise_id>')
 def exercise_detail(exercise_id):
     """Visar detaljer om en specifik övning"""
     is_logged_in = 'user_id' in session
