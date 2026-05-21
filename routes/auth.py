@@ -87,6 +87,3 @@ def log_out():
     """Loggar ut användaren genom att rensa sessionen."""
     session.pop('user_id', None)
     return redirect('/')
-
-if __name__ == '__main__':
-    app.run(debug=True)
