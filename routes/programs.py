@@ -138,7 +138,7 @@ def delete_program(program_id):
     return redirect('/my_program')
 
 
-@app.route('/remove_exercise/<int:program_id>/<int:exercise_id>', methods=['POST'])
+@programs_bp.route('/remove_exercise/<int:program_id>/<int:exercise_id>', methods=['POST'])
 def remove_exercise(program_id, exercise_id):
     """Tar bort en specifik övning från ett träningsprogram."""
     if 'user_id' not in session:
