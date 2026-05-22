@@ -25,7 +25,7 @@
                 <li><a href="/exercise" class="active">Övningsdatabas</a></li>
                 
                 {% if logged_in %}
-                    <li><a href="#">Logga Pass</a></li>
+                    <li><a href="/log_workout">Loggade Pass</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -33,11 +33,11 @@
         <main class="main-content">
             <div class="user-actions">
                 {% if not logged_in %}
-                    <a href="/login" class="liten-knapp">Logga in</a>
-                    <a href="/register" class="liten-knapp gron">Skapa konto</a>
+                    <a href="/login" class="small-button">Logga in</a>
+                    <a href="/register" class="small-button green">Skapa konto</a>
                 {% else %}
-                    <span>Inloggad som medlem</span>
-                    <a href="/log_out" class="liten-knapp">Logga ut</a>
+                    <span id="span1">Inloggad som medlem</span>
+                    <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
 
@@ -72,7 +72,7 @@
 
                 <div class="exercise-actions">
                     {% if logged_in %}
-                        <button class="liten-knapp gron">Lägg till i program</button>
+                        <button class="small-button green">Lägg till i program</button>
                     {% else %}
                         <p>Logga in för att lägga till övningar i dina program</p>
                     {% endif %}

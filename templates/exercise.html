@@ -25,7 +25,7 @@
                 <li><a href="/exercise" class="active">Övningsdatabas</a></li>
                 
                 {% if logged_in %}
-                    <li><a href="#">Logga Pass</a></li>
+                    <li><a href="/log_workout">Loggade Pass</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -33,22 +33,22 @@
         <main class="main-content">
             <div class="user-actions">
                 {% if not logged_in %}
-                    <a href="/inlogg" class="liten-knapp">Logga in</a>
-                    <a href="/regkonto" class="liten-knapp gron">Skapa konto</a>
+                    <a href="/login" class="small-button">Logga in</a>
+                    <a href="/register" class="small-button green">Skapa konto</a>
                 {% else %}
-                    <span>Inloggad som medlem</span>
-                    <a href="/logga_ut" class="liten-knapp">Logga ut</a>
+                    <span id="span1">Inloggad som medlem</span>
+                    <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
 
             <form method="GET" action="/search">
                 <input type="text" name="q" placeholder="Sök efter övningar..." required>
-                <button type="submit" class="liten-knapp gron">Sök</button>
+                <button type="submit" class="small green">Sök</button>
             </form>
 
             <h1> PeakForm Övningsdatabas </h1>
 
-            <h2 class="gron-text">ÖVNINGAR</h2>
+            <h2 class="green-text">ÖVNINGAR</h2>
             
             <div class="stats-row">
                 {% for exercise in exercises %}
