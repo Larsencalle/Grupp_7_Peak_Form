@@ -253,6 +253,11 @@ img {
     font-weight: bold;
     margin: 0;
     border: none;
+    color: #ffffff;
+}
+.program-card a{
+color: #ffffff;
+font-weight: bold;
 }
 
 .info-box {
