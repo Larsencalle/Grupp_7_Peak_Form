@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeakForm - {{ program_name }} (Aktivt)</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <nav class="sidebar">
+            <h2>PeakForm</h2>
+            <ul>
+                <li><a href="/dashboard">Hem</a></li>
+                <li><a href="/profile">Min profil</a></li>
+                <li><a href="/my_program" class="active">Mina Program</a></li>
+                <li><a href="/exercise">Övningsdatabas</a></li>
+                <li><a href="/log_workout">Loggade Pass</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="user-actions">
+                <span id="span1">Inloggad som medlem</span>
+                <a href="/log_out" class="small-button">Logga ut</a>
+            </div>
+            <div class="back-link-container">
+                <a href="/my_program" class="small-button">← Avsluta och gå tillbaka</a>
+            </div>
+            <div class="program-header">
+                <h1>{{ program_name }}</h1>
+                <span class="form-button status-active">Passet är igång...</span>
+            </div>
+
+            {% if active_exercise %}
+            <h2 class="green-text">Nuvarande övning</h2>
+            
+            <div class="active-exercise-focus-wrapper">
+                <h1 class="focus-exercise-main-title">{{ active_exercise[1] }}</h1>
+
+                <div class="exercise-image focus-green-border">
+                    <img src="{{ active_exercise[3] }}" alt="{{ active_exercise[1] }}" class="focus-large-img">
+                </div>
+                <div class="timer-container">
+            <h3>Vilo-timer</h3>
+                <div id="simple-timer">
+                 <input type="time" value="00:01">
+             <a href="https://www.google.com/search?q=timer+online" target="_blank" class="small-button">Starta timer</a>
+             </div>
+                </div>
+                <div class="exercise-info">
+                    <div class="exercise-meta">
+                        <p><strong>Kategori:</strong> {{ active_exercise[2] }}</p>
+                        <p><strong>Svårighetsgrad:</strong> 
+                            {% if active_exercise[5] == 1 or active_exercise[5] == '1' %}
+                                Lätt 
+                            {% elif active_exercise[5] == 2 or active_exercise[5] == '2' %}
+                                Medel 
+                            {% elif active_exercise[5] == 3 or active_exercise[5] == '3' %}
+                                Svår 
+                            {% else %}
+                                {{ active_exercise[5] }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="exercise-description">
+                        <h3>Beskrivning</h3>
+                        <p>{{ active_exercise[4] }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-container">
+                {% if current_index < total_exercises - 1 %}
+                <a href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index + 1][0] }}" class="form-button status-active">
+                    Nästa övning →
+                </a>
+                {% else %}
+                <span class="form-button status-done">Passet avklarat!</span>
+                {% endif %}
+
+                <a href="/my_program" class="small-button-red">
+                    Avsluta passet
+                </a>
+            </div>
+
+            {% else %}
+            <div class="info-box empty-program-box">
+                <h3>Programmet är tomt</h3>
+                <p>Det finns inga övningar i det här programmet ännu.</p>
+            </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>

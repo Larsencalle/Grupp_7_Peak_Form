@@ -41,12 +41,12 @@
                 {% endif %}
             </div>
 
-            <a href="/exercise" class="small-button">← Tillbaka</a>
+            <a href="/start_program/{{ program_id }}" class="small-button">← Tillbaka</a>
 
             <h1>{{ exercise[1] }}</h1>
 
             <div class="exercise-image">
-                <img src="{{ exercise[5] }}" alt="{{ exercise[1] }}">
+                <img src="/static/images/exercises/{{ exercise[5] }}" alt="{{ exercise[1] }}">
             </div>
 
             <div class="exercise-info">
