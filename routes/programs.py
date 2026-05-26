@@ -167,7 +167,7 @@ def remove_exercise(program_id, exercise_id):
 
 @programs_bp.route('/start_program/<int:program_id>')
 def start_program(program_id):
-    """Visar endast det valda programmets unika innehåll för den inloggade användaren"""
+    """Visar det valda programmets innehåll med navigeringsstöd"""
     if 'user_id' not in session:
         flash("Du måste logga in för att få tillgång till detta innehåll")
         return redirect('/login')
@@ -176,33 +176,52 @@ def start_program(program_id):
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    
+
     sql_program = "SELECT name FROM peakform.program WHERE program_id = %s AND user_id = %s"
     cursor.execute(sql_program, (program_id, user_id))
     program = cursor.fetchone()
 
     if not program:
-        flash("Programmet hittades inte eller så har du inte behörighet att starta det.")
         cursor.close()
         conn.close()
+        flash("Programmet hittades inte.")
         return redirect('/my_program')
 
+   
     sql_exercises = """
-        SELECT e.exercise_id, e.name, e.category, e.image_url, e.description, difficulty_level
+        SELECT e.exercise_id, e.name, e.category, e.image_url, e.description, e.difficulty_level 
         FROM peakform.program_exercise pe
         JOIN peakform.exercise e ON pe.exercise_id = e.exercise_id
         WHERE pe.program_id = %s
     """
     cursor.execute(sql_exercises, (program_id,))
     exercises = cursor.fetchall()
-
+    
     cursor.close()
     conn.close()
+
+   
+    selected_id = request.args.get('exercise_id', type=int)
+    
+    current_index = 0
+    if exercises:
+        if selected_id:
+            active_exercise = next((e for e in exercises if e[0] == selected_id), exercises[0])
+        else:
+            active_exercise = exercises[0]
+            
+ 
+        current_index = next((i for i, e in enumerate(exercises) if e[0] == active_exercise[0]), 0)
+    else:
+        active_exercise = None
 
     return render_template(
         'start_program.html', 
         logged_in=True, 
         program_id=program_id, 
         program_name=program[0], 
-        exercises=exercises
+        exercises=exercises,
+        active_exercise=active_exercise,
+        current_index=current_index,
+        total_exercises=len(exercises)
     )
