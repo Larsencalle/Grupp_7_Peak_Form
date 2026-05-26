@@ -470,6 +470,23 @@ img {
     cursor: pointer;
 }
 
+.add-exercise-box {
+    margin-top: 30px;
+}
+
+.add-exercise-box summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.add-exercise-box summary::-webkit-details-marker {
+    display: none;
+}
+
+.add-exercise-list {
+    margin-top: 20px;
+}
+
 /* FELMEDDELANDEN */
 .error-message-box {
     color: red;

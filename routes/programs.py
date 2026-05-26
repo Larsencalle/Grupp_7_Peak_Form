@@ -192,9 +192,10 @@ def add_exercise(program_id):
         return redirect('/login')
     
     user_id = session['user_id']
-    exercise_id = request.form.get('exercise_id')
-    if not exercise_id:
-        flash("Välj en övning")
+    exercise_ids = request.form.getlist('exercise_ids')
+    
+    if not exercise_ids:
+        flash("Välj övning")
         return redirect(f'/view_program/{program_id}')
     
     conn = get_db_connection()
@@ -207,20 +208,20 @@ def add_exercise(program_id):
     """
     cursor.execute(sql_check, (program_id, user_id))
     
-    
     if not cursor.fetchone():
         cursor.close()
         conn.close()
         flash("Du kan inte ändra i detta program")
         return redirect('/my_program')
     
-    cursor.execute(
-        """
+    sql_insert = """
         INSERT INTO peakform.program_exercise (program_id, exercise_id)
         VALUES (%s, %s)
-        """,
-        (program_id, exercise_id)
-    )
+    """
+
+    for exercise_id in exercise_ids:
+        cursor.execute(sql_insert, (program_id, exercise_id))
+    
         
     conn.commit()
     cursor.close()
