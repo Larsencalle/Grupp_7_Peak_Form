@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeakForm - {{ program_name }} (Aktivt)</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <nav class="sidebar">
+            <h2>PeakForm</h2>
+            <ul>
+                <li><a href="/dashboard">Hem</a></li>
+                <li><a href="/profile">Min profil</a></li>
+                <li><a href="/my_program" class="active">Mina Program</a></li>
+                <li><a href="/exercise">Övningsdatabas</a></li>
+                <li><a href="/log_workout">Loggade Pass</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="user-actions">
+                <span id="span1">Inloggad som medlem</span>
+                <a href="/log_out" class="small-button">Logga ut</a>
+            </div>
+
+            <div class="back-link-container">
+                <a href="/my_program" class="small-button">← Avsluta och gå tillbaka</a>
+            </div>
+
+            <div class="program-header">
+                <h1>{{ program_name }}</h1>
+                <span class="form-button" style="background-color: #28a745; cursor: default;">Passet är igång...</span>
+            </div>
+
+            <h2 class="green-text">Övningar att utföra</h2>
+
+            <div class="stats-row program-cards-container">
+                {% if exercises %}
+                    {% for exercise in exercises %}
+                        <div class="program-card">
+                            <div class="exercise-card-content">
+                                
+                                <a href="/exercise/{{ exercise[0] }}" class="exercise-card-link">
+                                    <img src="{{ exercise[3] }}" alt="{{ exercise[1] }}">
+                                    <div class="exercise-card-text">
+                                        <p>{{ exercise[1] }}</p>
+                                        <small class="category-label">{{ exercise[2] }}</small>
+                                    </div>
+                                </a>
+                                
+                                <div class="card-action-buttons border-top" style="text-align: center; padding: 10px 0;">
+                                    <span class="small-button" style="background-color: #555; display: inline-block; width: 80%;">Utför övningen</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="info-box empty-program-box">
+                        <h3>Programmet är tomt</h3>
+                        <p>Det finns inga övningar i det här programmet ännu.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>
