@@ -111,10 +111,30 @@ def view_program(program_id):
     cursor.execute(sql_exercises, (program_id,))
     exercises = cursor.fetchall()
 
+    sql_available_exercises = """
+        SELECT exercise_id, name, category
+        FROM peakform.exercise
+        WHERE exercise_id NOT IN (
+            SELECT exercise_id
+            FROM peakform.program_exercise
+            WHERE program_id = %s
+        )
+        ORDER BY category, name
+    """
+    cursor.execute(sql_available_exercises, (program_id,))
+    available_exercises = cursor.fetchall()
+
     cursor.close()
     conn.close()
 
-    return render_template('view_program.html', logged_in=True, program_id=program_id, program_name=program[0], exercises=exercises)
+    return render_template(
+        'view_program.html', 
+        logged_in=True, 
+        program_id=program_id, 
+        program_name=program[0], 
+        exercises=exercises,
+        available_exercises=available_exercises
+    )
 
 
 @programs_bp.route('/delete_program/<int:program_id>', methods=['POST'])
@@ -163,4 +183,48 @@ def remove_exercise(program_id, exercise_id):
 
     flash("Övningen har tagits bort från programmet.")
     
+    return redirect(f'/view_program/{program_id}')
+
+@programs_bp.route('/add_exercise/<int:program_id>', methods=['POST'])
+def add_exercise(program_id):
+    
+    if 'user_id' not in session:
+        return redirect('/login')
+    
+    user_id = session['user_id']
+    exercise_id = request.form.get('exercise_id')
+    if not exercise_id:
+        flash("Välj en övning")
+        return redirect(f'/view_program/{program_id}')
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    sql_check = """
+        SELECT 1
+        FROM peakform.program 
+        WHERE program_id = %s AND user_id = %s
+    """
+    cursor.execute(sql_check, (program_id, user_id))
+    
+    
+    if not cursor.fetchone():
+        cursor.close()
+        conn.close()
+        flash("Du kan inte ändra i detta program")
+        return redirect('/my_program')
+    
+    cursor.execute(
+        """
+        INSERT INTO peakform.program_exercise (program_id, exercise_id)
+        VALUES (%s, %s)
+        """,
+        (program_id, exercise_id)
+    )
+        
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    flash("Övningen har lagts till i programmet.!")
     return redirect(f'/view_program/{program_id}')

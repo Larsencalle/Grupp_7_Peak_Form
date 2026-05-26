@@ -72,6 +72,33 @@
                     </div>
                 {% endif %}
             </div>
+            <div class="profile-box create-program-box add-exercise-box">
+                <h2 class="green-text">Lägg till övning</h2>
+                
+                <form method="POST" action="/add_exercise/{{program_id}}">
+                    {% for available_exercise in available_exercises %}
+                        <div class = "checkbox-group">
+                            <input
+                                type="radio"
+                                id="add_ex_{{ available_exercise[0] }}"
+                                name="exercise_id"
+                                value="{{ available_exercise[0] }}"
+                                required
+                            >
+
+                            <label for="add_ex_{{ available_exercise[0] }}">
+                                <strong>{{ available_exercise[1] }}</strong>
+
+                                <span class="stat-subtitle">
+                                    ({{ available_exercise[2] }})
+                                </span>
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="form-button profile-button">Spara ny övning</button>
+                </form>
+            </div>
 
         </main>
     </div>
