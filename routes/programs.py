@@ -164,3 +164,46 @@ def remove_exercise(program_id, exercise_id):
     flash("Övningen har tagits bort från programmet.")
     
     return redirect(f'/view_program/{program_id}')
+
+@programs_bp.route('/start_program/<int:program_id>')
+def start_program(program_id):
+    """Visar endast det valda programmets unika innehåll för den inloggade användaren"""
+    if 'user_id' not in session:
+        flash("Du måste logga in för att få tillgång till detta innehåll")
+        return redirect('/login')
+
+    user_id = session['user_id']
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+  
+    sql_program = "SELECT name FROM peakform.program WHERE program_id = %s AND user_id = %s"
+    cursor.execute(sql_program, (program_id, user_id))
+    program = cursor.fetchone()
+
+    if not program:
+        flash("Programmet hittades inte eller så har du inte behörighet att starta det.")
+        cursor.close()
+        conn.close()
+        return redirect('/my_program')
+
+
+    sql_exercises = """
+        SELECT e.exercise_id, e.name, e.category, e.image_url 
+        FROM peakform.program_exercise pe
+        JOIN peakform.exercise e ON pe.exercise_id = e.exercise_id
+        WHERE pe.program_id = %s
+    """
+    cursor.execute(sql_exercises, (program_id,))
+    exercises = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return render_template(
+        'start_program.html', 
+        logged_in=True, 
+        program_id=program_id, 
+        program_name=program[0], 
+        exercises=exercises
+    )
