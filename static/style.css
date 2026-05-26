@@ -256,6 +256,10 @@ img {
     color: green;
 }
 
+a {
+    text-decoration: none;
+}
+
 .info-box {
     margin-bottom: 30px;
     text-align: center;
