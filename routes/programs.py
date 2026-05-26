@@ -176,7 +176,7 @@ def start_program(program_id):
     conn = get_db_connection()
     cursor = conn.cursor()
     
-  
+    
     sql_program = "SELECT name FROM peakform.program WHERE program_id = %s AND user_id = %s"
     cursor.execute(sql_program, (program_id, user_id))
     program = cursor.fetchone()
@@ -187,9 +187,8 @@ def start_program(program_id):
         conn.close()
         return redirect('/my_program')
 
-
     sql_exercises = """
-        SELECT e.exercise_id, e.name, e.category, e.image_url 
+        SELECT e.exercise_id, e.name, e.category, e.image_url, e.description, difficulty_level
         FROM peakform.program_exercise pe
         JOIN peakform.exercise e ON pe.exercise_id = e.exercise_id
         WHERE pe.program_id = %s
