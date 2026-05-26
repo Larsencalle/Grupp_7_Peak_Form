@@ -37,24 +37,24 @@
             </div>
 
             <h2 class="green-text">Övningar att utföra</h2>
-
+            
             <div class="stats-row program-cards-container">
                 {% if exercises %}
                     {% for exercise in exercises %}
                         <div class="program-card">
                             <div class="exercise-card-content">
                                 
-                                <a href="/start_program/{{ program_id }}/exercise/{{ exercise[0] }}" class="exercise-card-link">
+                                <a href="/exercise" class="exercise-card-link">
                                     <img src="{{ exercise[3] }}" alt="{{ exercise[1] }}">
                                     <div class="exercise-card-text">
                                         <p>{{ exercise[1] }}</p>
-                                        <small class="category-label">{{ exercise[2] }}</small>
+                                        <div class="category-label">{{ exercise[2] }}</div>
                                     </div>
                                 </a>
                                 
                                 <div class="card-action-buttons border-top card-actions-centered">
-                                    <a href="/start_program/{{ program_id }}/exercise/{{ exercise[0] }}" class="small-button btn-execute">
-                                        Utför övningen
+                                    <a href="/exercise" class="small-button btn-execute">
+                                        Visa detaljer
                                     </a>
                                 </div>
 
@@ -70,6 +70,6 @@
             </div>
 
         </main>
-    </div>
-</body>
-</html>
+    </div> 
+</body> 
+</html> 
