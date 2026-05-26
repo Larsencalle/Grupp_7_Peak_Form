@@ -253,6 +253,11 @@ img {
     font-weight: bold;
     margin: 0;
     border: none;
+    color: #ffffff;
+}
+.program-card a{
+color: #ffffff;
+font-weight: bold;
 }
 
 .info-box {
@@ -534,6 +539,60 @@ img {
     border-radius: 20px;
 }
 
+/*START PROGRAM */
+
+.active-exercise-focus-wrapper {
+    margin-bottom: 40px;
+    max-width: 800px;
+}
+
+.focus-exercise-main-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.focus-green-border {
+    border: 2px solid #2d8a00;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.focus-large-img {
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.nav-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+.status-done {
+    background-color: #333;
+    color: #888;
+    padding: 15px 40px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.small-button-red {
+    background-color: red;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
 /* Mobil anpassning */
 
 @media screen and (max-width: 480px) {

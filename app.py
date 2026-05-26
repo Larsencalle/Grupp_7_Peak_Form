@@ -17,6 +17,7 @@ app.register_blueprint(programs_bp)
 app.register_blueprint(users_bp)
 app.register_blueprint(log_workout_bp)
 
+
 #STARTSIDAN
 @app.route('/')
 def index():

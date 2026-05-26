@@ -50,11 +50,11 @@
                 
                 <div class="stats-row">
                     {% for exercise in results %}
-                        <a href="/exercise/{{ exercise[0] }}">
+                        <a href="/exercise/{{ exercise[0] }}" class="exercise-card-link">
                             <div class="program-card">
                                 <img src="{{ exercise[5] }}" alt="{{ exercise[1] }}">
                                 <p>{{ exercise[1] }}</p>
-                                <small>{{ exercise[3] }}</small>
+                                <small class="category-label">{{ exercise[3] }}</small>
                             </div>
                         </a>
                     {% endfor %}
