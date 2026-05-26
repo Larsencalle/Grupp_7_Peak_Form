@@ -347,6 +347,32 @@ img {
     border-radius: 20px;
 }
 
+/* STARTA PASS */
+
+.status-active {
+    background-color: #28a745;
+    cursor: default;
+}
+
+.card-actions-centered {
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+.btn-execute {
+    background-color: #28a745;
+    color: white;
+    display: inline-block;
+    width: 80%;
+    text-decoration: none;
+}
+
+.btn-execute:hover {
+    background-color: #218838;
+}
+
+
 /* Mobil anpassning */
 
 @media screen and (max-width: 480px) {
