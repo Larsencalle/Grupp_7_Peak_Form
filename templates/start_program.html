@@ -33,7 +33,7 @@
 
             <div class="program-header">
                 <h1>{{ program_name }}</h1>
-                <span class="form-button" style="background-color: #28a745; cursor: default;">Passet är igång...</span>
+                <span class="form-button status-active">Passet är igång...</span>
             </div>
 
             <h2 class="green-text">Övningar att utföra</h2>
@@ -44,7 +44,7 @@
                         <div class="program-card">
                             <div class="exercise-card-content">
                                 
-                                <a href="/exercise/{{ exercise[0] }}" class="exercise-card-link">
+                                <a href="/start_program/{{ program_id }}/exercise/{{ exercise[0] }}" class="exercise-card-link">
                                     <img src="{{ exercise[3] }}" alt="{{ exercise[1] }}">
                                     <div class="exercise-card-text">
                                         <p>{{ exercise[1] }}</p>
@@ -52,8 +52,10 @@
                                     </div>
                                 </a>
                                 
-                                <div class="card-action-buttons border-top" style="text-align: center; padding: 10px 0;">
-                                    <span class="small-button" style="background-color: #555; display: inline-block; width: 80%;">Utför övningen</span>
+                                <div class="card-action-buttons border-top card-actions-centered">
+                                    <a href="/start_program/{{ program_id }}/exercise/{{ exercise[0] }}" class="small-button btn-execute">
+                                        Utför övningen
+                                    </a>
                                 </div>
 
                             </div>
