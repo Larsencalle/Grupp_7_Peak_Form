@@ -5,7 +5,7 @@ from routes.exercises import exercises_bp
 from routes.programs import programs_bp
 from routes.users import users_bp
 from routes.log_workout import log_workout_bp
-from routes.start_program import programs_bp 
+from routes.start_program import start_program_bp 
 #from utils import login_required
 
 
@@ -17,7 +17,7 @@ app.register_blueprint(exercises_bp)
 app.register_blueprint(programs_bp)
 app.register_blueprint(users_bp)
 app.register_blueprint(log_workout_bp)
-app.register_blueprint(programs_bp)
+app.register_blueprint(start_program_bp)
 
 #STARTSIDAN
 @app.route('/')
