@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeakForm - {{ program_name }}</title>
+    <title>PeakForm - {{ program_name }} (Aktivt)</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="dashboard-body">
@@ -28,38 +28,34 @@
             </div>
 
             <div class="back-link-container">
-                <a href="/my_program" class="small-button">← Tillbaka till Mina Program</a>
+                <a href="/my_program" class="small-button">← Avsluta och gå tillbaka</a>
             </div>
 
             <div class="program-header">
                 <h1>{{ program_name }}</h1>
-                <a href="/start_program/{{ program_id }}" class="form-button new-program-btn">Starta detta pass</a>
+                <span class="form-button status-active">Passet är igång...</span>
             </div>
 
-            <h2 class="green-text">Övningar i programmet</h2>
-
+            <h2 class="green-text">Övningar att utföra</h2>
+            
             <div class="stats-row program-cards-container">
                 {% if exercises %}
                     {% for exercise in exercises %}
                         <div class="program-card">
                             <div class="exercise-card-content">
                                 
-                                <a href="/exercise/{{ exercise[0] }}" class="exercise-card-link">
+                                <a href="/exercise" class="exercise-card-link">
                                     <img src="{{ exercise[3] }}" alt="{{ exercise[1] }}">
                                     <div class="exercise-card-text">
                                         <p>{{ exercise[1] }}</p>
-                                        <small class="category-label">{{ exercise[2] }}</small>
+                                        <div class="category-label">{{ exercise[2] }}</div>
                                     </div>
                                 </a>
                                 
-                                <div class="card-action-buttons border-top">
-                                    <form action="/remove_exercise/{{ program_id }}/{{ exercise[0] }}" method="POST" class="delete-form full-width-form">
-                                        <div class="confirm-checkbox">
-                                            <input type="checkbox" id="remove_ex_{{ exercise[0] }}" name="confirm" required>
-                                            <label for="remove_ex_{{ exercise[0] }}">Bekräfta borttagning</label>
-                                        </div>
-                                        <button type="submit" class="small-button danger-btn full-width-btn">Ta bort övning</button>
-                                    </form>
+                                <div class="card-action-buttons border-top card-actions-centered">
+                                    <a href="/exercise" class="small-button btn-execute">
+                                        Visa detaljer
+                                    </a>
                                 </div>
 
                             </div>
@@ -74,6 +70,6 @@
             </div>
 
         </main>
-    </div>
-</body>
-</html>
+    </div> 
+</body> 
+</html> 
