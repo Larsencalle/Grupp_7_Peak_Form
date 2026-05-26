@@ -111,10 +111,30 @@ def view_program(program_id):
     cursor.execute(sql_exercises, (program_id,))
     exercises = cursor.fetchall()
 
+    sql_available_exercises = """
+        SELECT exercise_id, name, category
+        FROM peakform.exercise
+        WHERE exercise_id NOT IN (
+            SELECT exercise_id
+            FROM peakform.program_exercise
+            WHERE program_id = %s
+        )
+        ORDER BY category, name
+    """
+    cursor.execute(sql_available_exercises, (program_id,))
+    available_exercises = cursor.fetchall()
+
     cursor.close()
     conn.close()
 
-    return render_template('view_program.html', logged_in=True, program_id=program_id, program_name=program[0], exercises=exercises)
+    return render_template(
+        'view_program.html', 
+        logged_in=True, 
+        program_id=program_id, 
+        program_name=program[0], 
+        exercises=exercises,
+        available_exercises=available_exercises
+    )
 
 
 @programs_bp.route('/delete_program/<int:program_id>', methods=['POST'])
@@ -164,3 +184,109 @@ def remove_exercise(program_id, exercise_id):
     flash("Övningen har tagits bort från programmet.")
     
     return redirect(f'/view_program/{program_id}')
+
+@programs_bp.route('/add_exercise/<int:program_id>', methods=['POST'])
+def add_exercise(program_id):
+    
+    if 'user_id' not in session:
+        return redirect('/login')
+    
+    user_id = session['user_id']
+    exercise_ids = request.form.getlist('exercise_ids')
+    
+    if not exercise_ids:
+        flash("Välj övning")
+        return redirect(f'/view_program/{program_id}')
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    sql_check = """
+        SELECT 1
+        FROM peakform.program 
+        WHERE program_id = %s AND user_id = %s
+    """
+    cursor.execute(sql_check, (program_id, user_id))
+    
+    if not cursor.fetchone():
+        cursor.close()
+        conn.close()
+        flash("Du kan inte ändra i detta program")
+        return redirect('/my_program')
+    
+    sql_insert = """
+        INSERT INTO peakform.program_exercise (program_id, exercise_id)
+        VALUES (%s, %s)
+    """
+
+    for exercise_id in exercise_ids:
+        cursor.execute(sql_insert, (program_id, exercise_id))
+    
+        
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    flash("Övningen har lagts till i programmet.!")
+    return redirect(f'/view_program/{program_id}')
+
+@programs_bp.route('/start_program/<int:program_id>')
+def start_program(program_id):
+    """Visar det valda programmets innehåll med navigeringsstöd"""
+    if 'user_id' not in session:
+        flash("Du måste logga in för att få tillgång till detta innehåll")
+        return redirect('/login')
+
+    user_id = session['user_id']
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+
+    sql_program = "SELECT name FROM peakform.program WHERE program_id = %s AND user_id = %s"
+    cursor.execute(sql_program, (program_id, user_id))
+    program = cursor.fetchone()
+
+    if not program:
+        cursor.close()
+        conn.close()
+        flash("Programmet hittades inte.")
+        return redirect('/my_program')
+
+   
+    sql_exercises = """
+        SELECT e.exercise_id, e.name, e.category, e.image_url, e.description, e.difficulty_level 
+        FROM peakform.program_exercise pe
+        JOIN peakform.exercise e ON pe.exercise_id = e.exercise_id
+        WHERE pe.program_id = %s
+    """
+    cursor.execute(sql_exercises, (program_id,))
+    exercises = cursor.fetchall()
+    
+    cursor.close()
+    conn.close()
+
+   
+    selected_id = request.args.get('exercise_id', type=int)
+    
+    current_index = 0
+    if exercises:
+        if selected_id:
+            active_exercise = next((e for e in exercises if e[0] == selected_id), exercises[0])
+        else:
+            active_exercise = exercises[0]
+            
+ 
+        current_index = next((i for i, e in enumerate(exercises) if e[0] == active_exercise[0]), 0)
+    else:
+        active_exercise = None
+
+    return render_template(
+        'start_program.html', 
+        logged_in=True, 
+        program_id=program_id, 
+        program_name=program[0], 
+        exercises=exercises,
+        active_exercise=active_exercise,
+        current_index=current_index,
+        total_exercises=len(exercises)
+    )
