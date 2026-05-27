@@ -65,6 +65,8 @@
                         {% else %}
                             {{ exercise[4] }}
                         {% endif %}
+
+                        <a href="#level-popup" class="level-info-button">i</a>
                     </p>
                 </div>
 
@@ -89,8 +91,21 @@
                 <p>Lägg till denna övning i ett av dina program för att börja träna!</p>
             </div>
         </aside>
-
     </div>
 
+    <div id="level-popup" class="level-popup-overlay">
+        <div class="level-popop-box">
+            <a href="#" class="level-popup-close">x</a>
+            
+            <h2>Svårighetsgrader</h2>
+            <p><strong>Lätt:</strong> Övningar med enklare teknik eller låg belastning. Passar nybörjare.</p>
+            <p><strong>Medel:</strong> Övningar med medelsvår teknik och mellanhög belastning. Passar de med viss träningsvana. </p>
+            <p><strong>Svår:</strong> Övningar med avancerad teknik. Kan kräva styrka, rörlighet och kontroll. Passar mer erfarna.</p>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
 </body>
 </html>

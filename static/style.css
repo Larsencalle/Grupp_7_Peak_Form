@@ -707,3 +707,75 @@ font-weight: bold;
     }
 }
 
+/* Popup för svårighetsgrad */
+
+.level-info-button {
+    display: inline-block;
+    margin-left: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #2d8a00;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.level-info-button:hover {
+    background-color: #236b00;
+}
+
+.level-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: #2d8a00;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.level-popup-overlay:target {
+    display: block;
+}
+
+.level-popup-box {
+    background-color: #1e1e1e;
+    color: white;
+    width: 350px;
+    max-width: 90vw;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.level-popup-box h2 {
+    margin-top: 0;
+    color: #2d8a00;
+}
+
+.level-popup-box p {
+    line-height: 1.5px;
+    margin-bottom: 12px;
+}
+
+.level-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.level-popup-close:hover {
+    color:#000000
+}
