@@ -53,12 +53,12 @@
                                 </a>
                                 
                                 <div class="card-action-buttons border-top">
-                                    <button type="submit" class="small-button danger-btn full-width-btn">Ta bort övning</button>
                                     <form action="/remove_exercise/{{ program_id }}/{{ exercise[0] }}" method="POST" class="delete-form full-width-form">
                                         <div class="confirm-checkbox">
                                             <input type="checkbox" id="remove_ex_{{ exercise[0] }}" name="confirm" required>
                                             <label for="remove_ex_{{ exercise[0] }}">Bekräfta borttagning</label>
                                         </div>
+                                        <button type="submit" class="small-button danger-btn full-width-btn">Ta bort övning</button>
                                     </form>
                                 </div>
 
