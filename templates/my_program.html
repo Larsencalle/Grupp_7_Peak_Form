@@ -47,12 +47,12 @@
                             <div class="program-card-content">
                                 <h3>{{ program[1] }}</h3>
                                 <a href="/view_program/{{ program[0] }}" class="small-button green view-program-btn">Visa övningar</a>
+                                <button type="submit" class="small-button danger-btn">Radera program</button>
                                 <form action="/delete_program/{{ program[0] }}" method="POST" class="delete-form">
                                 <div class="confirm-checkbox">
                                     <input type="checkbox" id="confirm_{{ program[0] }}" name="confirm" required>
                                     <label for="confirm_{{ program[0] }}">Jag förstår att programmet raderas</label>
                                 </div>
-                                <button type="submit" class="small-button danger-btn">Radera program</button>
                             </form>
                             </div>
                         </div>
