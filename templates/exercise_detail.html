@@ -40,8 +40,11 @@
                     <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
-
-            <a href="/start_program/{{ program_id }}" class="small-button">← Tillbaka</a>
+            {% if program_id %}
+                <a href="/start_program/{{ program_id }}" class="small-button">← Tillbaka</a>
+            {% else %}
+                <a href="/exercise" class="small-button">← Tillbaka till övningar</a>
+            {% endif %}
 
             <h1>{{ exercise[1] }}</h1>
 
