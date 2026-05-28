@@ -1,6 +1,6 @@
-
 /* Grundläggande design för hela webbplatsen */
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -62,10 +62,10 @@ img {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.4); 
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .text-box h1 {
@@ -76,8 +76,8 @@ img {
 
 .text-box p {
     font-size: 1.4rem;
-    color: white;       
-    font-weight: bold;  
+    color: white;
+    font-weight: bold;
     margin-bottom: 30px;
 }
 
@@ -87,8 +87,8 @@ img {
     background-color: white;
     color: black;
     padding: 30px 40px;
-    border-radius: 20px;   
-    width: 400px; 
+    border-radius: 20px;
+    width: 400px;
     text-align: left;
 }
 
@@ -108,12 +108,13 @@ img {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 250px; 
+    width: 250px;
 }
 
 
 /* KNAPPAR */
-.button, .form-button {
+.button,
+.form-button {
     background-color: #2d8a00;
     color: white;
     padding: 15px 40px;
@@ -255,9 +256,10 @@ img {
     border: none;
     color: #ffffff;
 }
-.program-card a{
-color: #ffffff;
-font-weight: bold;
+
+.program-card a {
+    color: #ffffff;
+    font-weight: bold;
 }
 
 .info-box {
@@ -306,12 +308,12 @@ font-weight: bold;
     gap: 12px;
 }
 
-.profile-box label{
+.profile-box label {
     font-weight: bold;
     margin-top: 10px;
 }
 
-.profile-box input{
+.profile-box input {
     width: 100%;
     box-sizing: border-box;
     padding: 12px;
@@ -322,8 +324,8 @@ font-weight: bold;
     font-size: 1rem;
 }
 
-.profile-box input:focus{
-    outline:none;
+.profile-box input:focus {
+    outline: none;
     border-color: #2d8a00
 }
 
@@ -342,15 +344,15 @@ font-weight: bold;
 }
 
 #span1 {
-        align-self: center;
-        margin-top: 15px;
+    align-self: center;
+    margin-top: 15px;
 }
 
 /*SKAPA PROGRAM*/
 
 .create-program-box {
     width: 100%;
-    max-width: 600px; 
+    max-width: 600px;
 }
 
 .exercise-list {
@@ -358,7 +360,7 @@ font-weight: bold;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
-    max-height: 400px; 
+    max-height: 400px;
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -376,25 +378,25 @@ font-weight: bold;
 .checkbox-group input[type="checkbox"] {
     width: 20px;
     height: 20px;
-    accent-color: #2d8a00; 
+    accent-color: #2d8a00;
     cursor: pointer;
 }
 
 .checkbox-group label {
-    cursor: pointer; 
+    cursor: pointer;
     margin: 0;
     width: 100%;
 }
 
 .info-link {
-    margin-left: auto; 
-    color: #888; 
-    text-decoration: underline; 
+    margin-left: auto;
+    color: #888;
+    text-decoration: underline;
     font-size: 0.85rem;
 }
 
 .info-link:hover {
-    color: #2d8a00; 
+    color: #2d8a00;
 }
 
 /* MINA PROGRAM */
@@ -450,7 +452,7 @@ font-weight: bold;
 }
 
 .category-label {
-    display: block; 
+    display: block;
     text-align: center;
     color: #aaa;
     margin-bottom: 15px;
@@ -459,7 +461,7 @@ font-weight: bold;
 .delete-form {
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid #333; 
+    border-top: 1px solid #333;
 }
 
 .confirm-checkbox {
@@ -467,8 +469,8 @@ font-weight: bold;
     align-items: center;
     gap: 8px;
     margin-bottom: 10px;
-    font-size: 0.8rem; 
-    color: #ff4d4d; 
+    font-size: 0.8rem;
+    color: #ff4d4d;
 }
 
 .confirm-checkbox input[type="checkbox"] {
@@ -540,7 +542,7 @@ font-weight: bold;
 }
 
 .workout-history-list {
-    max-weight: 500px;
+    max-width: 500px;
     overflow-y: auto;
     padding-right: 10px;
     margin-top: 20px;
@@ -555,21 +557,6 @@ font-weight: bold;
     text-align: left;
 }
 
-.workout-history-list {
-    max-weight: 500px;
-    overflow-y: auto;
-    padding-right: 10px;
-    margin-top: 20px;
-}
-
-.workout-history-card {
-    background-color: #121212;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-    text-align: left;
-}
 
 /*START PROGRAM */
 
@@ -625,6 +612,7 @@ font-weight: bold;
     border: none;
     cursor: pointer;
 }
+
 /* Mobil anpassning */
 
 @media screen and (max-width: 480px) {
@@ -632,8 +620,8 @@ font-weight: bold;
         flex-direction: column;
         height: auto;
     }
-    
-    .split-layout section{
+
+    .split-layout section {
         width: 100%;
         min-height: 50vh;
     }
@@ -683,7 +671,8 @@ font-weight: bold;
         height: auto;
     }
 
-    .sidebar, .right-panel {
+    .sidebar,
+    .right-panel {
         flex: none;
         border: none;
     }
@@ -706,7 +695,9 @@ font-weight: bold;
         margin: 0px;
     }
 
-    .stat-box h3, p, h2 {
+    .stat-box h3,
+    p,
+    h2 {
         padding-left: 5px;
     }
 
@@ -722,3 +713,75 @@ font-weight: bold;
     }
 }
 
+/* Popup för svårighetsgrad */
+
+.level-info-button {
+    display: inline-block;
+    margin-left: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #2d8a00;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.level-info-button:hover {
+    background-color: #236b00;
+}
+
+.level-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: #2d8a00;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.level-popup-overlay:target {
+    display: block;
+}
+
+.level-popup-box {
+    background-color: #1e1e1e;
+    color: white;
+    width: 350px;
+    max-width: 90vw;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.level-popup-box h2 {
+    margin-top: 0;
+    color: #2d8a00;
+}
+
+.level-popup-box p {
+    line-height: 1.5px;
+    margin-bottom: 12px;
+}
+
+.level-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.level-popup-close:hover {
+    color: #000000
+}

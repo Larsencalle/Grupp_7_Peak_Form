@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session, flash
 from db import get_db_connection
-from exercise_images import get_exercise_image
 
 exercises_bp = Blueprint('exercises', __name__)
 
@@ -21,14 +20,8 @@ def exercise():
 
     cursor.close()
     conn.close()
-    
-    # Lägg till bildfilnamn för varje övning
-    exercises_with_images = []
-    for exercise in exercises_data:
-        image_url = get_exercise_image(exercise[0])
-        exercises_with_images.append((exercise[0], exercise[1], exercise[2], exercise[3], exercise[4], image_url))
 
-    return render_template('exercise.html', exercises=exercises_with_images, logged_in=is_logged_in)
+    return render_template('exercise.html', logged_in=is_logged_in, exercises=exercises_data)
 
 @exercises_bp.route('/search', methods=['GET'])
 def search():
@@ -50,13 +43,8 @@ def search():
     cursor.close()
     conn.close()
     
-    # Lägg till bildfilnamn för varje sökresultat
-    results_with_images = []
-    for result in results:
-        image_url = get_exercise_image(result[0])
-        results_with_images.append((result[0], result[1], result[2], result[3], result[4], image_url))
     
-    return render_template('search_results.html', results=results_with_images, query=query, logged_in=is_logged_in)
+    return render_template('exercise.html', logged_in=is_logged_in, exercises=results)
 
 @exercises_bp.route('/exercise/<int:exercise_id>')
 def exercise_detail(exercise_id):
@@ -81,8 +69,5 @@ def exercise_detail(exercise_id):
         flash("Övningen hittades inte.")
         return redirect('/exercise')
     
-    # Hämta bildfilnamn från exercise_images.py
-    image_url = get_exercise_image(exercise[0])
-    exercise_with_image = (exercise[0], exercise[1], exercise[2], exercise[3], exercise[4], image_url)
     
-    return render_template('exercise_detail.html', exercise=exercise_with_image, logged_in=is_logged_in, from_page=from_page, program_id=program_id)
+    return render_template('exercise_detail.html', logged_in=is_logged_in, exercise=exercise)
