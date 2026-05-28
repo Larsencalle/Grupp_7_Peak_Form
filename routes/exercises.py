@@ -62,6 +62,8 @@ def search():
 def exercise_detail(exercise_id):
     """Visar detaljer om en specifik övning"""
     is_logged_in = 'user_id' in session
+    from_page = request.args.get('from', 'exercise') 
+    program_id = request.args.get('program_id', None)
     
     conn = get_db_connection()
     if conn is None:
@@ -83,4 +85,4 @@ def exercise_detail(exercise_id):
     image_url = get_exercise_image(exercise[0])
     exercise_with_image = (exercise[0], exercise[1], exercise[2], exercise[3], exercise[4], image_url)
     
-    return render_template('exercise_detail.html', exercise=exercise_with_image, logged_in=is_logged_in)
+    return render_template('exercise_detail.html', exercise=exercise_with_image, logged_in=is_logged_in, from_page=from_page, program_id=program_id)

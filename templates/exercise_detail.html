@@ -40,10 +40,21 @@
                     <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
-            {% if program_id %}
-                <a href="/start_program/{{ program_id }}" class="small-button">← Tillbaka</a>
+
+            {% if from_page == 'exercise' %}
+                <a href="/exercise" class="small-button">← Tillbaka till övningsdatabasen</a>
+            {% elif from_page == 'search' %}
+                <a href="/exercise" class="small-button">← Tillbaka till sökning</a>
+            {% elif from_page == 'program' %}
+                <a href="/view_program/{{ program_id }}" class="small-button">← Tillbaka till program</a>
+            {% elif from_page == 'my_program' %}
+                <a href="/my_program" class="small-button">← Tillbaka till mina program</a>
+            {% elif from_page == 'create_program' %}
+                <a href="/create_program" class="small-button">← Tillbaka till skapa program</a>
+            {% elif from_page == 'add_exercise' %}
+                <a href="/view_program/{{ program_id }}" class="small-button">← Tillbaka till program</a>
             {% else %}
-                <a href="/exercise" class="small-button">← Tillbaka till övningar</a>
+                <a href="/exercise" class="small-button">← Tillbaka</a>
             {% endif %}
 
             <h1>{{ exercise[1] }}</h1>

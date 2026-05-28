@@ -42,9 +42,27 @@
 
             <div class="stats-row program-cards-container">
                 {% if exercises %}
-                {% for exercise in exercises %}
-                <div class="program-card">
-                    <div class="exercise-card-content">
+                    {% for exercise in exercises %}
+                        <div class="program-card">
+                            <div class="exercise-card-content">
+                                
+                                <a href="/exercise/{{ exercise[0] }}?from=program&program_id={{ program_id }}" class="exercise-card-link">
+                                    <img src="{{ exercise[3] }}" alt="{{ exercise[1] }}">
+                                    <div class="exercise-card-text">
+                                        <p>{{ exercise[1] }}</p>
+                                        <small class="category-label">{{ exercise[2] }}</small>
+                                    </div>
+                                </a>
+                                
+                                <div class="card-action-buttons border-top">
+                                    <form action="/remove_exercise/{{ program_id }}/{{ exercise[0] }}" method="POST" class="delete-form full-width-form">
+                                        <div class="confirm-checkbox">
+                                            <input type="checkbox" id="remove_ex_{{ exercise[0] }}" name="confirm" required>
+                                            <label for="remove_ex_{{ exercise[0] }}">Bekräfta borttagning</label>
+                                        </div>
+                                        <button type="submit" class="small-button danger-btn full-width-btn">Ta bort övning</button>
+                                    </form>
+                                </div>
 
                         <a href="/exercise/{{ exercise[0] }}" class="exercise-card-link">
                             <img src="{{ exercise[3] }}" alt="{{ exercise[1] }}">
@@ -94,12 +112,13 @@
                                 <label for="add_ex_{{ available_exercise[0] }}">
                                     <strong>{{ available_exercise[1] }}</strong>
 
-                                    <span class="stat-subtitle">
-                                        ({{ available_exercise[2] }})
-                                    </span>
-                                </label>
-                            </div>
-                            {% endfor %}
+                                            <span class="stat-subtitle">
+                                            ({{ available_exercise[2] }})
+                                            </span>
+                                        </label>
+                                        <a href="/exercise/{{ available_exercise[0] }}?from=add_exercise&program_id={{ program_id }}" class="info-link">Detaljer</a>
+                                    </div>
+                                {% endfor %}
 
                             <button type="submit" class="form-button profile-button">Spara övningar</button>
                         </form>

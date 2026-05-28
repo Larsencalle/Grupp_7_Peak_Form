@@ -52,7 +52,7 @@
             
             <div class="stats-row">
                 {% for exercise in exercises %}
-                    <a href="/exercise/{{ exercise[0] }}" class="exercise-card-link">
+                    <a href="/exercise/{{ exercise[0] }}?from=exercise" class="exercise-card-link">
                         <div class="program-card">
                             <img src="/static/images/exercises/{{ exercise[5] }}" alt="{{ exercise[1] }}">
                             <p>{{ exercise[1] }}</p>
