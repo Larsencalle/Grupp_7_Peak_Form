@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeakForm - Mina Program</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body class="dashboard-body">
 
     <div class="dashboard-layout">
-        
+
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
@@ -33,39 +35,41 @@
             </div>
 
             {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="info-box success-box">
-                        <p class="success-text">{{ messages[0] }}</p>
-                    </div>
-                {% endif %}
+            {% if messages %}
+            <div class="info-box success-box">
+                <p class="success-text">{{ messages[0] }}</p>
+            </div>
+            {% endif %}
             {% endwith %}
 
             <div class="stats-row program-cards-container">
                 {% if programs %}
-                    {% for program in programs %}
-                        <div class="program-card">
-                            <div class="program-card-content">
-                                <h3>{{ program[1] }}</h3>
-                                <a href="/view_program/{{ program[0] }}" class="small-button green view-program-btn">Visa övningar</a>
-                                <form action="/delete_program/{{ program[0] }}" method="POST" class="delete-form">
-                                <div class="confirm-checkbox">
-                                    <input type="checkbox" id="confirm_{{ program[0] }}" name="confirm" required>
-                                    <label for="confirm_{{ program[0] }}">Jag förstår att programmet raderas</label>
-                                </div>
-                                <button type="submit" class="small-button danger-btn">Radera program</button>
-                            </form>
+                {% for program in programs %}
+                <div class="program-card">
+                    <div class="program-card-content">
+                        <h3>{{ program[1] }}</h3>
+                        <a href="/view_program/{{ program[0] }}" class="small-button green view-program-btn">Visa
+                            övningar</a>
+                        <form action="/delete_program/{{ program[0] }}" method="POST" class="delete-form">
+                            <button type="submit" class="small-button danger-btn">Radera program</button>
+                            <div class="confirm-checkbox">
+                                <input type="checkbox" id="confirm_{{ program[0] }}" name="confirm" required>
+                                <label for="confirm_{{ program[0] }}">Jag förstår att programmet raderas</label>
                             </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="info-box empty-program-box">
-                        <h3>Inga program sparade än</h3>
-                        <p>Klicka på knappen ovan för att bygga ditt första träningsprogram!</p>
+                        </form>
                     </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="info-box empty-program-box">
+                    <h3>Inga program sparade än</h3>
+                    <p>Klicka på knappen ovan för att bygga ditt första träningsprogram!</p>
+                </div>
                 {% endif %}
             </div>
 
         </main>
     </div>
 </body>
+
 </html>
