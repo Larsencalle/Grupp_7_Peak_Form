@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeakForm - {{ program_name }} (Aktivt)</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body class="dashboard-body">
 
     <div class="dashboard-layout">
-        
+
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
@@ -36,7 +38,7 @@
 
             {% if active_exercise %}
             <h2 class="green-text">Nuvarande övning</h2>
-            
+
             <div class="active-exercise-focus-wrapper">
                 <h1 class="focus-exercise-main-title">{{ active_exercise[1] }}</h1>
 
@@ -44,24 +46,25 @@
                     <img src="{{ active_exercise[3] }}" alt="{{ active_exercise[1] }}" class="focus-large-img">
                 </div>
                 <div class="timer-container">
-            <h3>Vilo-timer</h3>
-                <div id="simple-timer">
-                 <input type="time" value="00:01">
-             <a href="https://www.google.com/search?q=timer+online" target="_blank" class="small-button">Starta timer</a>
-             </div>
+                    <h3>Vilo-timer</h3>
+                    <div id="simple-timer">
+                        <input type="time" value="00:01">
+                        <a href="https://www.google.com/search?q=timer+online" target="_blank"
+                            class="small-button">Starta timer</a>
+                    </div>
                 </div>
                 <div class="exercise-info">
                     <div class="exercise-meta">
                         <p><strong>Kategori:</strong> {{ active_exercise[2] }}</p>
-                        <p><strong>Svårighetsgrad:</strong> 
+                        <p><strong>Svårighetsgrad:</strong>
                             {% if active_exercise[5] == 1 or active_exercise[5] == '1' %}
-                                Lätt 
+                            Lätt
                             {% elif active_exercise[5] == 2 or active_exercise[5] == '2' %}
-                                Medel 
+                            Medel
                             {% elif active_exercise[5] == 3 or active_exercise[5] == '3' %}
-                                Svår 
+                            Svår
                             {% else %}
-                                {{ active_exercise[5] }}
+                            {{ active_exercise[5] }}
                             {% endif %}
                         </p>
                     </div>
@@ -73,17 +76,28 @@
             </div>
 
             <div class="nav-container">
-                {% if current_index < total_exercises - 1 %}
-                <a href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index + 1][0] }}" class="form-button status-active">
-                    Nästa övning →
+
+                {% if current_index > 0 %}
+                <a href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index - 1][0] }}"
+                    class="form-button">
+                    ← Föregående övning
                 </a>
-                {% else %}
-                <span class="form-button status-done">Passet avklarat!</span>
                 {% endif %}
 
-                <a href="/my_program" class="small-button-red">
-                    Avsluta passet
-                </a>
+                {% if current_index < total_exercises - 1 %} <a
+                    href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index + 1][0] }}"
+                    class="form-button status-active">
+                    Nästa övning →
+                    </a>
+                    {% else %}
+                    <span class="form-button status-done">
+                        Passet avklarat!
+                    </span>
+                    {% endif %}
+
+                    <a href="/my_program" class="small-button-red">
+                        Avsluta passet
+                    </a>
             </div>
 
             {% else %}
@@ -95,4 +109,5 @@
         </main>
     </div>
 </body>
+
 </html>
