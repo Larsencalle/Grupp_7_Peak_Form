@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeakForm - Loggade pass</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body class="dashboard-body">
 
     <div class="dashboard-layout">
-        
+
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
@@ -35,19 +37,19 @@
 
                     <div class="workout-history-list">
                         {% if workout_history %}
-                            {% for workout in workout_history %}
-                                <div class="workout-history-card">
-                                    <p><strong>Datum:</strong> {{ workout[1] }}</p>
-                                    <p><strong>Längd:</strong>{{ workout[2] }} minuter</p>
-                                    <p><strong>Övning:</strong> {{ workout[3] }}</p>
-                                    <p>
-                                        <strong>Set {{ workout[6] }}</strong>
-                                        {{ workout[4] }} kg x {{ workout[5] }} reps
-                                    </p>
-                                </div>
-                            {% endfor %}
+                        {% for workout in workout_history %}
+                        <div class="workout-history-card">
+                            <p><strong>Datum:</strong> {{ workout[1] }}</p>
+                            <p><strong>Längd:</strong>{{ workout[2] }} minuter</p>
+                            <p><strong>Övning:</strong> {{ workout[3] }}</p>
+                            <p>
+                                <strong>Set {{ workout[6] }}</strong>
+                                {{ workout[4] }} kg x {{ workout[5] }} reps
+                            </p>
+                        </div>
+                        {% endfor %}
                         {% else %}
-                            <p>Du har inte loggat några pass ännu</p>
+                        <p>Du har inte loggat några pass ännu</p>
                         {% endif %}
                     </div>
                 </div>
@@ -55,7 +57,7 @@
                     <h2>Statistik</h2>
                     <div class="register-workout-box">
                         <h3>Logga pass</h3>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </main>
@@ -63,4 +65,5 @@
     </div>
 
 </body>
+
 </html>
