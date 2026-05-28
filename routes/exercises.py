@@ -70,4 +70,4 @@ def exercise_detail(exercise_id):
         return redirect('/exercise')
     
     
-    return render_template('exercise_detail.html', logged_in=is_logged_in, exercise=exercise)
+    return render_template('exercise_detail.html', logged_in=is_logged_in, exercise=exercise,  from_page=from_page, program_id=program_id)
