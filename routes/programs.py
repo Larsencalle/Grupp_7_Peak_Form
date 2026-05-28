@@ -254,7 +254,7 @@ def start_program(program_id):
 
    
     sql_exercises = """
-        SELECT e.exercise_id, e.name, e.category, e.image_url, e.description, e.difficulty_level 
+        SELECT e.exercise_id, e.name, e.description, e.category, e.difficulty_level, e.image_url 
         FROM peakform.program_exercise pe
         JOIN peakform.exercise e ON pe.exercise_id = e.exercise_id
         WHERE pe.program_id = %s

@@ -18,10 +18,10 @@
                 <li><a href="/dashboard" class="active">Hem</a></li>
                 <!--Anpassar menyn baserat på om användaren är inloggad eller inte-->
                 {% if logged_in %}
-                    <li><a href="/profile">Min profil</a></li>
-                    <li><a href="/my_program">Mina Program</a></li>
+                <li><a href="/profile">Min profil</a></li>
+                <li><a href="/my_program">Mina Program</a></li>
                 {% else %}
-                    <li><a href="/create_program">Skapa program</a></li>
+                <li><a href="/create_program">Skapa program</a></li>
                 {% endif %}
 
                 <li><a href="/exercise">Övningsdatabas</a></li>
@@ -60,18 +60,15 @@
 
             <div class="stats-row">
                 <div class="program-card">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
-                        alt="Push pass">
+                    <img src="/static/images/exercises/benchpress.jpg" alt="Push pass">
                     <p>STARTA PUSH</p>
                 </div>
                 <div class="program-card">
-                    <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop"
-                        alt="Pull pass">
+                    <img src="/static/images/exercises/deadlift.jpg" alt="Pull pass">
                     <p>STARTA PULL</p>
                 </div>
                 <div class="program-card">
-                    <img src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?q=80&w=2074&auto=format&fit=crop"
-                        alt="Legs pass">
+                    <img src="/static/images/exercises/squats.jpg" alt="Legs pass">
                     <p>STARTA LEGS</p>
                 </div>
             </div>

@@ -43,7 +43,8 @@
                 <h1 class="focus-exercise-main-title">{{ active_exercise[1] }}</h1>
 
                 <div class="exercise-image focus-green-border">
-                    <img src="{{ active_exercise[3] }}" alt="{{ active_exercise[1] }}" class="focus-large-img">
+                    <img src="/static/images/exercises/{{ active_exercise[5] }}" alt="{{ active_exercise[1] }}"
+                        class="focus-large-img">
                 </div>
                 <div class="timer-container">
                     <h3>Vilo-timer</h3>
@@ -55,22 +56,22 @@
                 </div>
                 <div class="exercise-info">
                     <div class="exercise-meta">
-                        <p><strong>Kategori:</strong> {{ active_exercise[2] }}</p>
+                        <p><strong>Kategori:</strong> {{ active_exercise[3] }}</p>
                         <p><strong>Svårighetsgrad:</strong>
-                            {% if active_exercise[5] == 1 or active_exercise[5] == '1' %}
+                            {% if active_exercise[4] == 1 or active_exercise[4] == '1' %}
                             Lätt
-                            {% elif active_exercise[5] == 2 or active_exercise[5] == '2' %}
+                            {% elif active_exercise[4] == 2 or active_exercise[4] == '2' %}
                             Medel
-                            {% elif active_exercise[5] == 3 or active_exercise[5] == '3' %}
+                            {% elif active_exercise[4] == 3 or active_exercise[4] == '3' %}
                             Svår
                             {% else %}
-                            {{ active_exercise[5] }}
+                            {{ active_exercise[4] }}
                             {% endif %}
                         </p>
                     </div>
                     <div class="exercise-description">
                         <h3>Beskrivning</h3>
-                        <p>{{ active_exercise[4] }}</p>
+                        <p>{{ active_exercise[2] }}</p>
                     </div>
                 </div>
             </div>
