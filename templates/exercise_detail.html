@@ -40,10 +40,21 @@
                     <a href="/log_out" class="small-button">Logga ut</a>
                 {% endif %}
             </div>
-            {% if program_id %}
-                <a href="/start_program/{{ program_id }}" class="small-button">← Tillbaka</a>
+
+            {% if from_page == 'exercise' %}
+                <a href="/exercise" class="small-button">← Tillbaka till övningsdatabasen</a>
+            {% elif from_page == 'search' %}
+                <a href="/exercise" class="small-button">← Tillbaka till sökning</a>
+            {% elif from_page == 'program' %}
+                <a href="/view_program/{{ program_id }}" class="small-button">← Tillbaka till program</a>
+            {% elif from_page == 'my_program' %}
+                <a href="/my_program" class="small-button">← Tillbaka till mina program</a>
+            {% elif from_page == 'create_program' %}
+                <a href="/create_program" class="small-button">← Tillbaka till skapa program</a>
+            {% elif from_page == 'add_exercise' %}
+                <a href="/view_program/{{ program_id }}" class="small-button">← Tillbaka till program</a>
             {% else %}
-                <a href="/exercise" class="small-button">← Tillbaka till övningar</a>
+                <a href="/exercise" class="small-button">← Tillbaka</a>
             {% endif %}
 
             <h1>{{ exercise[1] }}</h1>
@@ -65,6 +76,8 @@
                         {% else %}
                             {{ exercise[4] }}
                         {% endif %}
+
+                        <a href="#level-popup" class="level-info-button">i</a>
                     </p>
                 </div>
 
@@ -89,8 +102,21 @@
                 <p>Lägg till denna övning i ett av dina program för att börja träna!</p>
             </div>
         </aside>
-
     </div>
 
+    <div id="level-popup" class="level-popup-overlay">
+        <div class="level-popop-box">
+            <a href="#" class="level-popup-close">x</a>
+            
+            <h2>Svårighetsgrader</h2>
+            <p><strong>Lätt:</strong> Övningar med enklare teknik eller låg belastning. Passar nybörjare.</p>
+            <p><strong>Medel:</strong> Övningar med medelsvår teknik och mellanhög belastning. Passar de med viss träningsvana. </p>
+            <p><strong>Svår:</strong> Övningar med avancerad teknik. Kan kräva styrka, rörlighet och kontroll. Passar mer erfarna.</p>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
 </body>
 </html>
