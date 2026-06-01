@@ -613,106 +613,6 @@ img {
     cursor: pointer;
 }
 
-/* Mobil anpassning */
-
-@media screen and (max-width: 480px) {
-    .split-layout {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .split-layout section {
-        width: 100%;
-        min-height: 50vh;
-    }
-
-    .left-section h1 {
-        font-size: 2.5rem;
-        text-align: center;
-    }
-
-    .text-box h1 {
-        font-size: 3rem;
-    }
-
-    .text-box p {
-        font-size: 1rem;
-        padding: 0 20px;
-    }
-
-    .form-box {
-        width: 90%;
-        padding: 20px;
-    }
-
-    .form-group {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .form-group input {
-        width: 100%;
-        margin-top: 5px;
-    }
-
-    .split-layout nav {
-        position: static;
-        text-align: center;
-        margin: 20px 0;
-    }
-
-    .split-layout nav a {
-        display: inline-block;
-        margin: 10px;
-    }
-
-    .dashboard-layout {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .sidebar,
-    .right-panel {
-        flex: none;
-        border: none;
-    }
-
-    .main-content {
-        padding: 20px;
-        overflow-x: hidden;
-    }
-
-    .stats-row {
-        flex-direction: column;
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .stat-box {
-        width: 100%;
-        min-width: auto;
-        padding: 0px;
-        margin: 0px;
-    }
-
-    .stat-box h3,
-    p,
-    h2 {
-        padding-left: 5px;
-    }
-
-    .program-card {
-        width: 100%;
-        min-width: auto;
-    }
-
-    .info-box {
-        padding: 0px;
-        margin: 0px;
-
-    }
-}
-
 /* Popup för svårighetsgrad */
 
 .level-info-button {
@@ -784,4 +684,185 @@ img {
 
 .level-popup-close:hover {
     color: #000000
+}
+
+/* Mobil anpassning */
+
+@media screen and (max-width: 480px) {
+    .split-layout {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .split-layout section {
+        width: 100%;
+        min-height: 50vh;
+    }
+
+    .left-section h1 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .text-box h1 {
+        font-size: 3rem;
+    }
+
+    .text-box p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .form-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-group input {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .split-layout nav {
+        position: static;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .split-layout nav a {
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .dashboard-layout {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar,
+    .right-panel {
+        flex: none;
+        border: none;
+
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 20px 0;
+        padding-bottom: 0px;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        text-align: center;
+        border: 1px solid #333;
+        width: 100%;
+    }
+
+    .sidebar h2 {
+        text-align: center;
+        font-size: 2rem;
+
+    }
+
+    .main-content {
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    .stats-row {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .stat-box {
+        width: 100%;
+        min-width: auto;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .stat-box h3,
+    p,
+    h2 {
+        padding-left: 5px;
+    }
+
+    .program-card {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .info-box {
+        padding: 0px;
+        margin: 0px;
+
+    }
+
+    .user-actions {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .user-actions a {
+        width: auto;
+        margin: 5px 0;
+        color: rgb(244, 68, 68);
+    }
+
+    h1 {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .profile-box {
+        width: auto;
+        margin-top: 40px;
+    }
+
+    .program-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .program-header a {
+        width: 90%;
+        text-align: center;
+    }
+
+    .confirm-checkbox {
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+
+    .small-button.danger-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search-bar {
+        width: 100%;
+        text-align: center;
+        height: 30px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #search-bar-button {
+        width: 100%;
+        text-align: center;
+    }
 }

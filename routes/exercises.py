@@ -44,7 +44,7 @@ def search():
     conn.close()
     
     
-    return render_template('exercise.html', logged_in=is_logged_in, exercises=results)
+    return render_template('search_results.html', logged_in=is_logged_in, results=results, query=query)
 
 @exercises_bp.route('/exercise/<int:exercise_id>')
 def exercise_detail(exercise_id):
@@ -70,4 +70,4 @@ def exercise_detail(exercise_id):
         return redirect('/exercise')
     
     
-    return render_template('exercise_detail.html', logged_in=is_logged_in, exercise=exercise, from_page=from_page, program_id=program_id)
+    return render_template('exercise_detail.html', logged_in=is_logged_in, exercise=exercise,  from_page=from_page, program_id=program_id)
