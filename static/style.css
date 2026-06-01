@@ -852,4 +852,17 @@ img {
         width: 100%;
         text-align: center;
     }
+
+    .search-bar {
+        width: 100%;
+        text-align: center;
+        height: 30px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #search-bar-button {
+        width: 100%;
+        text-align: center;
+    }
 }
