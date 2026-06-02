@@ -356,10 +356,19 @@ img {
 }
 
 .exercise-image {
-    height: 180px;
+    height: 300px;
     border-radius: 10px;
     border: 2px solid #2d8a00;
     margin-bottom: 15px;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+}
+
+.exercise-image img {
+    object-fit: contain;
+    width: auto;
+    max-width: 100%;
 }
 
 
@@ -658,8 +667,9 @@ img {
 .focus-large-img {
     height: 350px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background-color: #121212;
 }
 
 .nav-container {
