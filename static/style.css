@@ -1,4 +1,6 @@
-/* Grundläggande design för hela webbplatsen */
+
+   /* GLOBALA STILAR */
+
 body,
 html {
     margin: 0;
@@ -18,7 +20,8 @@ img {
 }
 
 
-/* DELAD LAYOUT */
+/* LOGIN / REGISTER SPLIT LAYOUT */
+
 .split-layout {
     display: flex;
     height: 100vh;
@@ -83,6 +86,7 @@ img {
 
 
 /* FORMULÄR */
+
 .form-box {
     background-color: white;
     color: black;
@@ -113,6 +117,7 @@ img {
 
 
 /* KNAPPAR */
+
 .button,
 .form-button {
     background-color: #2d8a00;
@@ -154,8 +159,21 @@ img {
     border: none;
 }
 
+.small-button-red {
+    background-color: red;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
 
-/* INLOGGAT LÄGE */
+
+/* HUVUDLAYOUT - DASHBOARD */
+
 .dashboard-body {
     background-color: #121212;
     color: #ffffff;
@@ -214,8 +232,50 @@ img {
     margin-bottom: 20px;
 }
 
+#span1 {
+    align-self: center;
+    margin-top: 15px;
+}
 
-/* DASHBOARD */
+
+/* INFO-BOXAR OCH GENERELLA KOMPONENTER */
+
+.info-box {
+    margin-bottom: 30px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.info-box h3 {
+    color: #aaa;
+}
+
+.info-box p {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.info-link {
+    margin-left: auto;
+    color: #888;
+    text-decoration: underline;
+    font-size: 0.85rem;
+}
+
+.info-link:hover {
+    color: #2d8a00;
+}
+
+.error-message-box {
+    color: red;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+
+/* DASHBOARD - HEMSKÄRM */
+
 .stats-row {
     display: flex;
     gap: 20px;
@@ -262,20 +322,37 @@ img {
     font-weight: bold;
 }
 
-.info-box {
-    margin-bottom: 30px;
-    text-align: center;
-    margin-top: 80px;
+.program-card-link {
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.info-box h3 {
-    color: #aaa;
+.program-card-link:hover {
+    transform: translateY(-5px);
 }
 
-.info-box p {
-    color: #888;
-    font-size: 0.9rem;
-    line-height: 1.5;
+.program-card-link:hover .program-card {
+    box-shadow: 0 8px 16px rgba(45, 138, 0, 0.3);
+    border-color: #2d8a00;
+}
+
+
+/* ÖVNINGSBIBLIOTEK */
+
+.exercise-library-card-link {
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exercise-library-card-link:hover {
+    transform: translateY(-5px);
+}
+
+.exercise-library-card-link:hover .program-card {
+    box-shadow: 0 8px 16px rgba(45, 138, 0, 0.3);
+    border-color: #2d8a00;
 }
 
 .exercise-image {
@@ -286,7 +363,8 @@ img {
 }
 
 
-/* PROFIL-SIDAN */
+/* MIN PROFIL */
+
 .profile-box {
     background-color: #1e1e1e;
     color: white;
@@ -343,12 +421,7 @@ img {
     text-align: center;
 }
 
-#span1 {
-    align-self: center;
-    margin-top: 15px;
-}
-
-/*SKAPA PROGRAM*/
+/* SKAPA PROGRAM */
 
 .create-program-box {
     width: 100%;
@@ -386,17 +459,6 @@ img {
     cursor: pointer;
     margin: 0;
     width: 100%;
-}
-
-.info-link {
-    margin-left: auto;
-    color: #888;
-    text-decoration: underline;
-    font-size: 0.85rem;
-}
-
-.info-link:hover {
-    color: #2d8a00;
 }
 
 /* MINA PROGRAM */
@@ -440,6 +502,7 @@ img {
     width: 100%;
 }
 
+
 /* VISA PROGRAM */
 
 .back-link-container {
@@ -449,6 +512,25 @@ img {
 .exercise-card-link {
     text-decoration: none;
     color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise-card-link img {
+    height: 120px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.exercise-card-text {
+    padding: 10px;
+    text-align: center;
+}
+
+.exercise-card-text p {
+    margin: 0;
+    font-weight: bold;
+    color: #ffffff;
 }
 
 .category-label {
@@ -494,14 +576,9 @@ img {
     margin-top: 20px;
 }
 
-/* FELMEDDELANDEN */
-.error-message-box {
-    color: red;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
 
 /* LOGGA PASS */
+
 .log-workout-box {
     display: flex;
     flex-direction: row;
@@ -558,7 +635,7 @@ img {
 }
 
 
-/*START PROGRAM */
+/* STARTA PROGRAM */
 
 .active-exercise-focus-wrapper {
     margin-bottom: 40px;
@@ -601,19 +678,8 @@ img {
     font-weight: bold;
 }
 
-.small-button-red {
-    background-color: red;
-    color: white;
-    padding: 15px 40px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-}
 
-/* Popup för svårighetsgrad */
+/* SVÅRIGHETSGRAD - POPUP */
 
 .level-info-button {
     display: inline-block;
@@ -686,9 +752,11 @@ img {
     color: #000000
 }
 
-/* Mobil anpassning */
+
+/* RESPONSIVE DESIGN - MOBIL ANPASSNING */
 
 @media screen and (max-width: 480px) {
+    /* Login / Register */
     .split-layout {
         flex-direction: column;
         height: auto;
@@ -739,6 +807,7 @@ img {
         margin: 10px;
     }
 
+    /* Dashboard Layout */
     .dashboard-layout {
         flex-direction: column;
         height: auto;
@@ -748,7 +817,6 @@ img {
     .right-panel {
         flex: none;
         border: none;
-
     }
 
     .sidebar {
@@ -774,7 +842,6 @@ img {
     .sidebar h2 {
         text-align: center;
         font-size: 2rem;
-
     }
 
     .main-content {
@@ -782,6 +849,7 @@ img {
         overflow-x: hidden;
     }
 
+    /* Dashboard Cards */
     .stats-row {
         flex-direction: column;
         gap: 10px;
@@ -809,9 +877,9 @@ img {
     .info-box {
         padding: 0px;
         margin: 0px;
-
     }
 
+    /* User Actions */
     .user-actions {
         justify-content: center;
         flex-direction: column;
@@ -823,16 +891,19 @@ img {
         color: rgb(244, 68, 68);
     }
 
+    /* Headings */
     h1 {
         margin-top: 40px;
         text-align: center;
     }
 
+    /* Profile Box */
     .profile-box {
         width: auto;
         margin-top: 40px;
     }
 
+    /* Program Header */
     .program-header {
         flex-direction: column;
         gap: 15px;
@@ -843,11 +914,13 @@ img {
         text-align: center;
     }
 
+    /* Checkboxes */
     .confirm-checkbox {
         justify-content: center;
         font-size: 1.3rem;
     }
 
+    /* Additional Mobile Elements */
     .small-button.danger-btn {
         width: 100%;
         text-align: center;
