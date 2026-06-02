@@ -48,10 +48,20 @@
                 </div>
                 <div class="timer-container">
                     <h3>Vilo-timer</h3>
-                    <div id="simple-timer">
-                        <input type="time" value="00:01">
-                        <a href="https://www.google.com/search?q=timer+online" target="_blank"
-                            class="small-button">Starta timer</a>
+                    <div id="chronoExample">
+                        <div class="timer-presets">
+                            <button type="button" class="preset-btn timer-btn" data-seconds="60">1 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="120">2 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="180">3 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="300">5 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="600">10 min</button>
+                        </div>
+                        <div class="values">05:00</div>
+                        <div class="timer-buttons">
+                            <button type="button" class="start-button timer-btn">Start</button>
+                            <button type="button" class="pause-button timer-btn">Pause</button>
+                            <button type="button" class="reset-button timer-btn">Reset</button>
+                        </div>
                     </div>
                 </div>
                 <div class="exercise-info">
@@ -109,6 +119,8 @@
             {% endif %}
         </main>
     </div>
+
+    <script src="/static/timer-countdown.js"></script>
 </body>
 
 </html>

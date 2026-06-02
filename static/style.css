@@ -396,10 +396,19 @@ img {
 }
 
 .exercise-image {
-    height: 180px;
+    height: 300px;
     border-radius: 10px;
     border: 2px solid #2d8a00;
     margin-bottom: 15px;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+}
+
+.exercise-image img {
+    object-fit: contain;
+    width: auto;
+    max-width: 100%;
 }
 
 
@@ -704,8 +713,9 @@ img {
 .focus-large-img {
     height: 350px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background-color: #121212;
 }
 
 .nav-container {
@@ -722,6 +732,84 @@ img {
     padding: 15px 40px;
     border-radius: 5px;
     font-weight: bold;
+}
+
+.timer-container {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.timer-container h3 {
+    margin-top: 0;
+    color: #2d8a00;
+}
+
+.timer-presets {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.preset-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    background-color: #2d8a00;
+}
+
+.preset-btn:hover {
+    background-color: #236b00;
+}
+
+#chronoExample .values {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2d8a00;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+}
+
+.timer-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.timer-btn {
+    background-color: #2d8a00;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.timer-btn:hover {
+    background-color: #236b00;
+}
+
+.timer-btn:active {
+    transform: scale(0.98);
+}
+
+.pause-button {
+    color: #236b00;
+    background-color: white;
+}
+
+.reset-button {
+    color: white;
+    background-color: red;
 }
 
 
