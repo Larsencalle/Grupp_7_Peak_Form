@@ -840,8 +840,59 @@ img {
     color: #000000
 }
 
+/* INMATNING FÖR SETS OCH REPS (STARTA PROGRAM) */
+.log-set-box {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
 
-/* RESPONSIVE DESIGN - MOBIL ANPASSNING */
+.log-set-title {
+    margin-top: 0;
+    color: #2d8a00;
+}
+
+.log-set-success {
+    color: #2d8a00;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.log-set-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.log-set-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: white;
+    width: 100px;
+    box-sizing: border-box;
+}
+
+.log-set-input:focus {
+    outline: none;
+    border-color: #2d8a00;
+}
+
+.log-set-btn {
+    margin: 0; 
+}
+
+/* RUBRIK FÖR HISTORIK-KORT */
+.workout-pass-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* RESPONSIV DESIGN - MOBIL ANPASSNING */
 
 @media screen and (max-width: 480px) {
     /* Login / Register */

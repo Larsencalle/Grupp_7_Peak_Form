@@ -330,3 +330,60 @@ def start_program(program_id):
         current_index=current_index,
         total_exercises=len(exercises)
     )
+
+@programs_bp.route('/init_workout/<int:program_id>')
+def init_workout(program_id):
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    sql = "INSERT INTO peakform.workout_session (user_id, session_date, duration_minutes) VALUES (%s, CURRENT_DATE, 0) RETURNING session_id"
+    cursor.execute(sql, (session['user_id'],))
+    session['active_session_id'] = cursor.fetchone()[0]
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return redirect(f'/start_program/{program_id}')
+
+
+@programs_bp.route('/log_set', methods=['POST'])
+def log_set():
+    if 'active_session_id' not in session:
+        flash("Inget aktivt pass hittades. Gå tillbaka och starta om passet.")
+        return redirect('/my_program')
+
+    session_id = session['active_session_id']
+    program_id = request.form.get('program_id')
+    exercise_id = request.form.get('exercise_id')
+    weight = request.form.get('weight')
+    reps = request.form.get('reps')
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    sql_count = "SELECT COUNT(*) FROM peakform.workout_set WHERE session_id = %s AND exercise_id = %s"
+    cursor.execute(sql_count, (session_id, exercise_id))
+    set_number = cursor.fetchone()[0] + 1
+
+    sql_insert = "INSERT INTO peakform.workout_set (session_id, exercise_id, weight, reps, set_number) VALUES (%s, %s, %s, %s, %s)"
+    cursor.execute(sql_insert, (session_id, exercise_id, weight, reps, set_number))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    flash(f"Set {set_number} sparat: {weight} kg x {reps} reps!")
+    
+    return redirect(f'/start_program/{program_id}?exercise_id={exercise_id}')
+
+
+@programs_bp.route('/end_workout')
+def end_workout():
+    if 'active_session_id' in session:
+        session.pop('active_session_id', None) 
+        flash("Grymt jobbat! Passet är sparat i din historik.")
+    return redirect('/log_workout')
