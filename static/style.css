@@ -340,6 +340,46 @@ img {
 
 /* ÖVNINGSBIBLIOTEK */
 
+.category-filter-form{
+    margin: 20px 0 30px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.category-filter-form label{
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.category-select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #1e1e1e;
+    color: white;
+    min-width: 200px;
+    font-size: 0.95rem;
+}
+
+.category-select:focus{
+    outline: none;
+    border-color: #2d8a00;
+}
+
+.exercise-category-section{
+    margin-bottom: 45px;
+}
+
+.category-heading{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #2d8a00;
+    border-bottom: 2px solid #2d8a00;
+    padding-bottom: 8px;
+}
+
 .exercise-library-card-link {
     text-decoration: none;
     display: inline-block;
@@ -544,9 +584,15 @@ img {
 
 .category-label {
     display: block;
+    width: fit-content;
+    margin: 0 auto 15px auto;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background-color: #143d14;
     text-align: center;
-    color: #aaa;
-    margin-bottom: 15px;
+    color: #a8ff9e;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 .delete-form {
@@ -1076,5 +1122,18 @@ img {
     #search-bar-button {
         width: 100%;
         text-align: center;
+    }
+
+    .category-filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .category-select {
+        width: 100%;
+    }
+
+    .category-filter-form .small-button {
+        width: 100%;
     }
 }
