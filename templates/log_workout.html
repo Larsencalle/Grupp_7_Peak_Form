@@ -40,9 +40,8 @@
                         {% for workout in workout_history %}
                         <div class="workout-history-card">
 
-                            <h3 class="green-text workout-pass-title">Pass #{{ workout[0] }}</h3>
+                            <h3 class="green-text workout-pass-title">Pass: {{ workout[1] }}</h3>
 
-                            <p><strong>Datum:</strong> {{ workout[1] }}</p>
                             <p><strong>Övning:</strong> {{ workout[3] }}</p>
                             <p>
                                 <strong>Set {{ workout[6] }}:</strong>

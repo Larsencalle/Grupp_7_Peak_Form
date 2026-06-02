@@ -217,14 +217,6 @@ img {
     overflow-y: auto;
 }
 
-.right-panel {
-    flex: 0 0 320px;
-    background: #181818;
-    border-left: 1px solid #333;
-    padding: 40px 25px;
-    overflow-y: auto;
-}
-
 .user-actions {
     display: flex;
     justify-content: flex-end;
@@ -396,19 +388,19 @@ img {
 }
 
 .exercise-image {
-    height: 300px;
-    border-radius: 10px;
-    border: 2px solid #2d8a00;
-    margin-bottom: 15px;
-    background-color: #121212;
     display: flex;
     justify-content: center;
+    margin-bottom: 25px;
 }
 
 .exercise-image img {
+    height: 350px;            
+    width: auto;               
+    max-width: 100%;          
     object-fit: contain;
-    width: auto;
-    max-width: 100%;
+    border-radius: 10px;      
+    border: 2px solid #2d8a00; 
+    background-color: #ffffff;
 }
 
 
@@ -474,7 +466,8 @@ img {
 
 .create-program-box {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .exercise-list {
@@ -599,11 +592,15 @@ img {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .confirm-checkbox {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     margin-bottom: 10px;
     font-size: 0.8rem;
@@ -944,6 +941,11 @@ img {
     line-height: 1.6; 
 }
 
+/* CENTRERAR RUBRIKER */
+.center-title {
+    text-align: center;
+}
+
 /* RESPONSIV DESIGN - MOBIL ANPASSNING */
 
 @media screen and (max-width: 480px) {
@@ -1004,8 +1006,7 @@ img {
         height: auto;
     }
 
-    .sidebar,
-    .right-panel {
+    .sidebar {
         flex: none;
         border: none;
     }
