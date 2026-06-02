@@ -938,6 +938,12 @@ img {
     margin-bottom: 10px;
 }
 
+/* RADBRYTNINGAR I BESKRIVNINGARNA */
+.exercise-description p {
+    white-space: pre-wrap;
+    line-height: 1.6; 
+}
+
 /* RESPONSIV DESIGN - MOBIL ANPASSNING */
 
 @media screen and (max-width: 480px) {
