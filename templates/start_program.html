@@ -85,21 +85,23 @@
                     </div>
                     <div class="log-set-box">
                         <h3 class="log-set-title">Logga set</h3>
-                        
+
                         {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                <p class="log-set-success">✓ {{ messages[0] }}</p>
-                            {% endif %}
+                        {% if messages %}
+                        <p class="log-set-success">✓ {{ messages[0] }}</p>
+                        {% endif %}
                         {% endwith %}
 
                         <form action="/log_set" method="POST" class="log-set-form">
                             <input type="hidden" name="program_id" value="{{ program_id }}">
                             <input type="hidden" name="exercise_id" value="{{ active_exercise[0] }}">
-            
-                            <input type="number" name="weight" placeholder="Vikt (kg)" step="0.5" required class="log-set-input">
-                            
-                            <input type="number" name="reps" placeholder="Reps" required class="log-set-input">
-            
+
+                            <input type="number" name="weight" placeholder="Vikt (kg)" step="0.5" min="0" max="999"
+                                required class="log-set-input">
+
+                            <input type="number" name="reps" placeholder="Reps" min="1" max="999" required
+                                class="log-set-input">
+
                             <button type="submit" class="small-button green log-set-btn">Spara set</button>
                         </form>
                     </div>

@@ -359,8 +359,17 @@ def log_set():
     session_id = session['active_session_id']
     program_id = request.form.get('program_id')
     exercise_id = request.form.get('exercise_id')
-    weight = request.form.get('weight')
-    reps = request.form.get('reps')
+    
+    try:
+        weight = float(request.form.get('weight'))
+        reps = int(request.form.get('reps'))
+    except (TypeError, ValueError):
+        flash("Ogiltiga värden. Skriv bara in siffror.")
+        return redirect(f'/start_program/{program_id}?exercise_id={exercise_id}')
+
+    if weight < 0 or weight > 1000 or reps < 1 or reps > 1000:
+        flash("Vänligen ange rimliga värden (Vikt: 0-1000 kg, Reps: 1-1000).")
+        return redirect(f'/start_program/{program_id}?exercise_id={exercise_id}')
 
     conn = get_db_connection()
     cursor = conn.cursor()
