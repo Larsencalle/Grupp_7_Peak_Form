@@ -48,10 +48,20 @@
                 </div>
                 <div class="timer-container">
                     <h3>Vilo-timer</h3>
-                    <div id="simple-timer">
-                        <input type="time" value="00:01">
-                        <a href="https://www.google.com/search?q=timer+online" target="_blank"
-                            class="small-button">Starta timer</a>
+                    <div id="chronoExample">
+                        <div class="timer-presets">
+                            <button type="button" class="preset-btn timer-btn" data-seconds="60">1 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="120">2 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="180">3 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="300">5 min</button>
+                            <button type="button" class="preset-btn timer-btn" data-seconds="600">10 min</button>
+                        </div>
+                        <div class="values">05:00</div>
+                        <div class="timer-buttons">
+                            <button type="button" class="start-button timer-btn">Start</button>
+                            <button type="button" class="pause-button timer-btn">Pause</button>
+                            <button type="button" class="reset-button timer-btn">Reset</button>
+                        </div>
                     </div>
                 </div>
                 <div class="exercise-info">
@@ -72,6 +82,28 @@
                     <div class="exercise-description">
                         <h3>Beskrivning</h3>
                         <p>{{ active_exercise[2] }}</p>
+                    </div>
+                    <div class="log-set-box">
+                        <h3 class="log-set-title">Logga set</h3>
+
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <p class="log-set-success">✓ {{ messages[0] }}</p>
+                        {% endif %}
+                        {% endwith %}
+
+                        <form action="/log_set" method="POST" class="log-set-form">
+                            <input type="hidden" name="program_id" value="{{ program_id }}">
+                            <input type="hidden" name="exercise_id" value="{{ active_exercise[0] }}">
+
+                            <input type="number" name="weight" placeholder="Vikt (kg)" step="0.5" min="0" max="999"
+                                required class="log-set-input">
+
+                            <input type="number" name="reps" placeholder="Reps" min="1" max="999" required
+                                class="log-set-input">
+
+                            <button type="submit" class="small-button green log-set-btn">Spara set</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -96,9 +128,7 @@
                     </span>
                     {% endif %}
 
-                    <a href="/my_program" class="small-button-red">
-                        Avsluta passet
-                    </a>
+                    <a href="/end_workout" class="small-button-red">Avsluta passet</a>
             </div>
 
             {% else %}
@@ -109,6 +139,8 @@
             {% endif %}
         </main>
     </div>
+
+    <script src="/static/timer-countdown.js"></script>
 </body>
 
 </html>

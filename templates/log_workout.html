@@ -39,13 +39,15 @@
                         {% if workout_history %}
                         {% for workout in workout_history %}
                         <div class="workout-history-card">
-                            <p><strong>Datum:</strong> {{ workout[1] }}</p>
-                            <p><strong>Längd:</strong>{{ workout[2] }} minuter</p>
+
+                            <h3 class="green-text workout-pass-title">Pass: {{ workout[1] }}</h3>
+
                             <p><strong>Övning:</strong> {{ workout[3] }}</p>
                             <p>
-                                <strong>Set {{ workout[6] }}</strong>
+                                <strong>Set {{ workout[6] }}:</strong>
                                 {{ workout[4] }} kg x {{ workout[5] }} reps
                             </p>
+
                         </div>
                         {% endfor %}
                         {% else %}

@@ -217,14 +217,6 @@ img {
     overflow-y: auto;
 }
 
-.right-panel {
-    flex: 0 0 320px;
-    background: #181818;
-    border-left: 1px solid #333;
-    padding: 40px 25px;
-    overflow-y: auto;
-}
-
 .user-actions {
     display: flex;
     justify-content: flex-end;
@@ -340,6 +332,46 @@ img {
 
 /* ÖVNINGSBIBLIOTEK */
 
+.category-filter-form{
+    margin: 20px 0 30px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.category-filter-form label{
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.category-select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #1e1e1e;
+    color: white;
+    min-width: 200px;
+    font-size: 0.95rem;
+}
+
+.category-select:focus{
+    outline: none;
+    border-color: #2d8a00;
+}
+
+.exercise-category-section{
+    margin-bottom: 45px;
+}
+
+.category-heading{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #2d8a00;
+    border-bottom: 2px solid #2d8a00;
+    padding-bottom: 8px;
+}
+
 .exercise-library-card-link {
     text-decoration: none;
     display: inline-block;
@@ -356,10 +388,19 @@ img {
 }
 
 .exercise-image {
-    height: 180px;
-    border-radius: 10px;
-    border: 2px solid #2d8a00;
-    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.exercise-image img {
+    height: 350px;            
+    width: auto;               
+    max-width: 100%;          
+    object-fit: contain;
+    border-radius: 10px;      
+    border: 2px solid #2d8a00; 
+    background-color: #ffffff;
 }
 
 
@@ -425,7 +466,8 @@ img {
 
 .create-program-box {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .exercise-list {
@@ -535,20 +577,30 @@ img {
 
 .category-label {
     display: block;
+    width: fit-content;
+    margin: 0 auto 15px auto;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background-color: #143d14;
     text-align: center;
-    color: #aaa;
-    margin-bottom: 15px;
+    color: #a8ff9e;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 .delete-form {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .confirm-checkbox {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     margin-bottom: 10px;
     font-size: 0.8rem;
@@ -658,8 +710,9 @@ img {
 .focus-large-img {
     height: 350px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background-color: #121212;
 }
 
 .nav-container {
@@ -676,6 +729,84 @@ img {
     padding: 15px 40px;
     border-radius: 5px;
     font-weight: bold;
+}
+
+.timer-container {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.timer-container h3 {
+    margin-top: 0;
+    color: #2d8a00;
+}
+
+.timer-presets {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.preset-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    background-color: #2d8a00;
+}
+
+.preset-btn:hover {
+    background-color: #236b00;
+}
+
+#chronoExample .values {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2d8a00;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+}
+
+.timer-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.timer-btn {
+    background-color: #2d8a00;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.timer-btn:hover {
+    background-color: #236b00;
+}
+
+.timer-btn:active {
+    transform: scale(0.98);
+}
+
+.pause-button {
+    color: #236b00;
+    background-color: white;
+}
+
+.reset-button {
+    color: white;
+    background-color: red;
 }
 
 
@@ -752,8 +883,70 @@ img {
     color: #000000
 }
 
+/* INMATNING FÖR SETS OCH REPS (STARTA PROGRAM) */
+.log-set-box {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
 
-/* RESPONSIVE DESIGN - MOBIL ANPASSNING */
+.log-set-title {
+    margin-top: 0;
+    color: #2d8a00;
+}
+
+.log-set-success {
+    color: #2d8a00;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.log-set-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.log-set-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: white;
+    width: 100px;
+    box-sizing: border-box;
+}
+
+.log-set-input:focus {
+    outline: none;
+    border-color: #2d8a00;
+}
+
+.log-set-btn {
+    margin: 0; 
+}
+
+/* RUBRIK FÖR HISTORIK-KORT */
+.workout-pass-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* RADBRYTNINGAR I BESKRIVNINGARNA */
+.exercise-description p {
+    white-space: pre-wrap;
+    line-height: 1.6; 
+}
+
+/* CENTRERAR RUBRIKER */
+.center-title {
+    text-align: center;
+}
+
+/* RESPONSIV DESIGN - MOBIL ANPASSNING */
 
 @media screen and (max-width: 480px) {
     /* Login / Register */
@@ -813,8 +1006,7 @@ img {
         height: auto;
     }
 
-    .sidebar,
-    .right-panel {
+    .sidebar {
         flex: none;
         border: none;
     }
@@ -937,5 +1129,18 @@ img {
     #search-bar-button {
         width: 100%;
         text-align: center;
+    }
+
+    .category-filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .category-select {
+        width: 100%;
+    }
+
+    .category-filter-form .small-button {
+        width: 100%;
     }
 }
