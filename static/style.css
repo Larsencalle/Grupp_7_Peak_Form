@@ -629,6 +629,7 @@ img {
 }
 
 .search-bar input {
+    outline: none;
     padding: 16px;
     font-size: 18px;
     background: #1e1e1e;
