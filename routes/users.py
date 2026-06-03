@@ -9,8 +9,25 @@ users_bp = Blueprint('users', __name__)
 def dashboard():
     """Visar användarens dashboard och kollar om personen är inloggad."""
     is_logged_in = 'user_id' in session
-    return render_template('dashboard.html', logged_in=is_logged_in)
+    is_logged_in = 'user_id' in session
+    antal_pass = 0
+    
+    if is_logged_in:
+        user_id = session['user_id']
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        cur.execute("""
+            SELECT COUNT(*) FROM peakform.workout_session 
+            WHERE user_id = %s 
+            AND TO_CHAR(session_date, 'YYYY-MM') = TO_CHAR(NOW(), 'YYYY-MM');
+        """, (user_id,))
+        
+        antal_pass = cur.fetchone()[0]
+        cur.close()
+        conn.close()
 
+    return render_template('dashboard.html', logged_in=is_logged_in, antal_pass=antal_pass)
 
 @users_bp.route('/profile')
 def profile():

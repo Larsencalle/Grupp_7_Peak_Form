@@ -49,9 +49,13 @@
             {% if logged_in %}
             <div class="stats-row">
                 <div class="stat-box">
-                    <p>Avklarade pass denna månad:</p>
-                    <h2 class="green-text">0</h2>
-                    <p class="stat-subtitle">Dags att logga ditt första pass!</p>
+                    <p>Avklarade pass denna månad: </p>
+                    <h2 class="green-text">{{ antal_pass }}</h2>
+                    {% if antal_pass > 0 %}
+                    <p class="stat-subtitle">Bra jobbat, fortsätt så!</p>
+                    {% else %}
+                          <p class="stat-subtitle">Dags att logga ditt första pass!</p>
+                    {% endif %}
                 </div>
             </div>
             {% endif %}
