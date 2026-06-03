@@ -411,15 +411,17 @@ def view_log_workout():
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("""
-    SELECT COUNT(.) FROM peakform.workout_session
+    SELECT COUNT(*) FROM peakform.workout_session
     WHERE user_id = %s
     AND TO_CHAR(session_date, 'YYYY-MM') = TO_CHAR(NOW(), 'YYYY-MM');
     """, (user_id,))
     antal_pass = cur.fetchone()[0]
     cur.close()
     conn.close()
-    return render_template( 'log_workout.html',
+    return render_template(
+    'log_workout.html',
     logged_in=True,
     workout_history=workout_history,
-    antal_pass=antal_pass)
+    antal_pass=antal_pass
+    )
     
