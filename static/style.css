@@ -659,6 +659,15 @@ img {
     padding: 30px 40px;
     text-align: center;
 }
+.statistic-box p {
+    background-color: #2d8a00;
+    border: 1px solid #333;    
+    border-radius: 12px;       
+    padding: 15px 20px;        
+    margin: 20px auto;        
+    max-width: 320px;        
+    text-align: center;        
+}
 
 .register-workout-box {
     margin-top: auto;

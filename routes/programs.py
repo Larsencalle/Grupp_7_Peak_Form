@@ -396,3 +396,19 @@ def end_workout():
         session.pop('active_session_id', None) 
         flash("Grymt jobbat! Passet är sparat i din historik.")
     return redirect('/log_workout')
+
+@programs_bp.route('/log_workout')
+def view_log_workout():
+    if 'user_id' not in session:
+        flash("Du måste logga in.")
+        return redirect('/login')
+
+    user_id = session['user_id']
+    from utils import get_workout_history 
+
+    workout_history = get_workout_history(user_id)
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    
