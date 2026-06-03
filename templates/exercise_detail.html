@@ -22,7 +22,7 @@
                     <li><a href="/create_program">Skapa program</a></li>
                 {% endif %}
                 
-                <li><a href="/exercise" class="active">Övningsdatabas</a></li>
+                <li><a href="/exercise" class="active">Övningsbibliotek</a></li>
                 
                 {% if logged_in %}
                     <li><a href="/log_workout">Loggade Pass</a></li>
@@ -42,7 +42,7 @@
             </div>
 
             {% if from_page == 'exercise' %}
-                <a href="/exercise" class="small-button">← Tillbaka till övningsdatabasen</a>
+                <a href="/exercise" class="small-button">← Tillbaka till Övningsbiblioteket</a>
             {% elif from_page == 'search' %}
                 <a href="/exercise" class="small-button">← Tillbaka till sökning</a>
             {% elif from_page == 'program' %}

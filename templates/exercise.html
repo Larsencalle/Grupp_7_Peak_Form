@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeakForm - Övningsdatabas</title>
+    <title>PeakForm - Övningsbibliotek</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="dashboard-body">
@@ -22,7 +22,7 @@
                     <li><a href="/create_program">Skapa program</a></li>
                 {% endif %}
                 
-                <li><a href="/exercise" class="active">Övningsdatabas</a></li>
+                <li><a href="/exercise" class="active">Övningsbibliotek</a></li>
                 
                 {% if logged_in %}
                     <li><a href="/log_workout">Loggade Pass</a></li>
@@ -41,17 +41,18 @@
                 {% endif %}
             </div>
 
-            <form method="GET" action="/search" class="search-form">
-             <input type="text" name="q" placeholder="Sök efter övningar..." required>
-             <button type="submit">Sök</button>
+            <form method="GET" action="/search">
+                <input type="text" name="q" class="search-bar" placeholder="Sök efter övningar..." required>
+                <button type="submit" id="search-bar-button"  class="small-button green">Sök</button>
             </form>
-            <h1> PeakForm Övningsdatabas </h1>
+
+            <h1> PeakForm Övningsbibliotek </h1>
 
             <h2 class="green-text">ÖVNINGAR</h2>
             
             <div class="stats-row">
                 {% for exercise in exercises %}
-                    <a href="/exercise/{{ exercise[0] }}?from=exercise" class="exercise-card-link">
+                    <a href="/exercise/{{ exercise[0] }}?from=exercise" class="exercise-library-card-link">
                         <div class="program-card">
                             <img src="/static/images/exercises/{{ exercise[5] }}" alt="{{ exercise[1] }}">
                             <p>{{ exercise[1] }}</p>

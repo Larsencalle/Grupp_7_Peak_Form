@@ -5,6 +5,46 @@ from db import get_db_connection
 programs_bp = Blueprint('programs', __name__)
 
 
+@programs_bp.route('/start_category_program/<category>')
+def start_category_program(category):
+    """Skapar automatiskt ett program från alla övningar i en kategori och sparar det."""
+    if 'user_id' not in session:
+        flash("Du måste logga in för att skapa ett program.")
+        return redirect('/login')
+    
+    user_id = session['user_id']
+    category_lower = category.lower()
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    sql_exercises = "SELECT exercise_id FROM peakform.exercise WHERE LOWER(category) = %s"
+    cursor.execute(sql_exercises, (category_lower,))
+    exercises = cursor.fetchall()
+    
+    if not exercises:
+        flash(f"Inga övningar hittades för kategorin '{category}'.")
+        cursor.close()
+        conn.close()
+        return redirect('/dashboard')
+    
+    program_name = f"{category.upper()}"
+    sql_program = "INSERT INTO peakform.program (name, user_id) VALUES (%s, %s) RETURNING program_id"
+    cursor.execute(sql_program, (program_name, user_id))
+    program_id = cursor.fetchone()[0]
+    
+    sql_add_exercise = "INSERT INTO peakform.program_exercise (program_id, exercise_id) VALUES (%s, %s)"
+    for exercise in exercises:
+        cursor.execute(sql_add_exercise, (program_id, exercise[0]))
+    
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    flash(f"Program '{program_name}' har skapats med alla övningar från denna kategori!")
+    return redirect(f'/my_program')
+
+
 @programs_bp.route('/create_program')
 def create_program():
     """Visar sidan där man bygger ett program. Fungerar både för inloggade och utloggade."""
