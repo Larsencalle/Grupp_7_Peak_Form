@@ -628,6 +628,27 @@ img {
     margin-top: 20px;
 }
 
+.search-bar input {
+    padding: 16px;
+    font-size: 18px;
+    background: #1e1e1e;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 8px;
+    width: 400px; 
+    box-sizing: border-box;
+}
+
+.search-bar button {
+    padding: 16px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #2d8a00; 
+    color: #ffffff;
+    border: 1px solid #2d8a00; 
+    border-radius: 8px;
+    cursor: pointer;
+}
 
 /* LOGGA PASS */
 
