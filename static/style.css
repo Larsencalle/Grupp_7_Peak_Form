@@ -217,6 +217,14 @@ img {
     overflow-y: auto;
 }
 
+.right-panel {
+    flex: 0 0 280px;
+    background: #181818;
+    border-left: 1px solid #333;
+    padding: 40px 25px;
+    overflow-y: auto;
+}
+
 .user-actions {
     display: flex;
     justify-content: flex-end;
