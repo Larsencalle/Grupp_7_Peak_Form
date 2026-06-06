@@ -638,8 +638,8 @@ img {
 
 .search-bar input {
     outline: none;
-    padding: 16px;
-    font-size: 18px;
+    padding: 8px;
+    font-size: 16px;
     background: #1e1e1e;
     color: white;
     border: 1px solid #444;
@@ -648,15 +648,22 @@ img {
     box-sizing: border-box;
 }
 
+.search-bar {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+}
+
 .search-bar button {
-    padding: 16px 28px;
-    font-size: 18px;
+    padding: 0px 18px;
+    font-size: 15px;
     font-weight: bold;
     background: #2d8a00; 
     color: #ffffff;
     border: 1px solid #2d8a00; 
     border-radius: 8px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 /* LOGGA PASS */
