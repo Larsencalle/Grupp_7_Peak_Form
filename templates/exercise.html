@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeakForm - Övningsdatabas</title>
+    <title>PeakForm - Övningsbibliotek</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="dashboard-body">
@@ -22,7 +22,7 @@
                     <li><a href="/create_program">Skapa program</a></li>
                 {% endif %}
                 
-                <li><a href="/exercise" class="active">Övningsdatabas</a></li>
+                <li><a href="/exercise" class="active">Övningsbibliotek</a></li>
                 
                 {% if logged_in %}
                     <li><a href="/log_workout">Loggade Pass</a></li>
@@ -41,34 +41,60 @@
                 {% endif %}
             </div>
 
-            <form method="GET" action="/search">
-                <input type="text" name="q" class="search-bar" placeholder="Sök efter övningar..." required>
-                <button type="submit" id="search-bar-button"  class="small-button green">Sök</button>
+            <form method="GET" action="/search" class="search-bar">
+             <input type="text" name="q" placeholder="Sök efter övningar..." required>
+             <button type="submit">Sök</button>
             </form>
 
-            <h1> PeakForm Övningsdatabas </h1>
+            <h1> PeakForm Övningsbibliotek </h1>
+
+            <form method="GET" action="/exercise" class="category-filter-form">
+                <label for="category">Filtrera efter kategori:</label>
+
+                <select name="category" id="category" class="category-select">
+                    <option value="">Alla kategorier</option>
+
+                    {% for category in categories %}
+                        <option value="{{ category }}" {% if selected_category == category %}selected{% endif %}>
+                            {{ category }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="small-button green">Filtrera</button>
+                {% if selected_category %}
+                    <a href="/exercise" class="small-button">Visa alla</a>
+                {% endif %}
+            </form>
 
             <h2 class="green-text">ÖVNINGAR</h2>
-            
-            <div class="stats-row">
-                {% for exercise in exercises %}
-                    <a href="/exercise/{{ exercise[0] }}?from=exercise" class="exercise-card-link">
-                        <div class="program-card">
-                            <img src="/static/images/exercises/{{ exercise[5] }}" alt="{{ exercise[1] }}">
-                            <p>{{ exercise[1] }}</p>
+
+            {% if exercises_by_category %}
+                {% for category, exercises in exercises_by_category.items() %}
+                    <section class="exercise-category-section">
+                        <h2 class="category-heading">{{ category }}</h2>
+
+                        <div class="stats-row">
+                            {% for exercise in exercises %}
+                                <a href="/exercise/{{ exercise[0] }}?from=exercise" class="exercise-library-card-link">
+                                    <div class="program-card">
+                                        <img src="/static/images/exercises/{{ exercise[5] }}" alt="{{ exercise[1] }}">
+                                        <p>{{ exercise[1] }}</p>
+                                        <small class="category-label">{{ exercise[3] }} </small>
+                                    </div>
+                                </a>
+                            {% endfor %}
                         </div>
-                    </a>
+                    </section>
                 {% endfor %}
-            </div>
+            {% else %}
+                    <div class="info-box">
+                        <h2>Inga övningar hittades</h2>
+                        <p>Det finns inga övningar i den valda kategorin.</p>
+                        <a href="/exercise" class="small-button green">Visa alla övningar</a>
+                    </div>
+                {% endif %}
         </main>
-
-        <aside class="right-panel">
-            <div class="info-box">
-                <h3>Inget pass aktivt</h3>
-                <p>Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga Pass' för att köra fritt.</p>
-            </div>
-        </aside>
-
     </div>
 
 </body>

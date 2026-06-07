@@ -20,7 +20,7 @@
                 {% else %}
                     <li><a href="/create_program" class="active">Skapa program</a></li>
                 {% endif %}
-                <li><a href="/exercise">Övningsdatabas</a></li>
+                <li><a href="/exercise">Övningsbibliotek</a></li>
                 {% if logged_in %}
                     <li><a href="/log_workout">Loggade Pass</a></li>
                 {% endif %}
@@ -38,7 +38,7 @@
                 {% endif %}
             </div>
 
-            <h1>Skapa ett nytt träningsprogram</h1>
+            <h1 class="center-title">Skapa ett nytt träningsprogram</h1>
 
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -67,7 +67,7 @@
                             <label for="ex_{{ exercise[0] }}">
                                 <strong>{{ exercise[1] }}</strong> <span class="stat-subtitle">({{ exercise[2] }})</span>
                             </label>
-                            <a href="/exercise/{{ exercise[0] }}?from=create_program" class="info-link">Detaljer</a>
+                            <a href="/exercise/{{ exercise[0] }}?from=create_program"  class="info-link">Detaljer</a>
                         </div>
                         {% endfor %}
                     </div>
@@ -76,13 +76,6 @@
                 </form>
             </div>
         </main>
-
-        <aside class="right-panel">
-            <div class="info-box">
-                <h3>Skapa program</h3>
-                <p>Ge ditt program ett namn och bocka för de övningar du vill inkludera. Klicka sedan på spara för att lägga till det i din profil.</p>
-            </div>
-        </aside>
 
     </div>
 

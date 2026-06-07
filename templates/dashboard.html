@@ -12,6 +12,7 @@
 
     <div class="dashboard-layout">
 
+        <!--SIDOMENY-->
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
@@ -24,7 +25,7 @@
                 <li><a href="/create_program">Skapa program</a></li>
                 {% endif %}
 
-                <li><a href="/exercise">Övningsdatabas</a></li>
+                <li><a href="/exercise">Övningsbibliotek</a></li>
 
                 {% if logged_in %}
                 <li><a href="/log_workout">Loggade Pass</a></li>
@@ -32,9 +33,11 @@
             </ul>
         </nav>
 
+        <!--HUVUDINNEHÅLL-->
         <main class="main-content">
+            
+            <!--TOPP-MENY (INLOGGNING/UTLOGGNING)-->
             <div class="user-actions">
-                <!--Visar logga in knapp om utloggad, annars utloggningsknappen-->
                 {% if not logged_in %}
                 <a href="/login" class="small-button">Logga in</a>
                 <a href="/register" class="small-button green">Skapa konto</a>
@@ -46,41 +49,45 @@
 
             <h1>Välkommen till PeakForm!</h1>
 
+            <!--STATISTIK (Visas endast om inloggad)-->
             {% if logged_in %}
             <div class="stats-row">
                 <div class="stat-box">
-                    <p>Avklarade pass denna månad:</p>
-                    <h2 class="green-text">0</h2>
+                    <p>Avklarade pass denna månad: </p>
+                    <h2 class="green-text">{{ antal_pass }}</h2>
+                    {% if antal_pass > 0 %}
+                    <p class="stat-subtitle">Bra jobbat, fortsätt så!</p>
+                    {% else %}
                     <p class="stat-subtitle">Dags att logga ditt första pass!</p>
+                    {% endif %}
                 </div>
             </div>
             {% endif %}
 
+            <!--SNABBLÄNKAR TILL KATEGORI-PROGRAM-->
             <h2 class="green-text">VÄLJ ETT PROGRAM ATT STARTA MED</h2>
 
             <div class="stats-row">
-                <div class="program-card">
-                    <img src="/static/images/exercises/benchpress.jpg" alt="Push pass">
-                    <p>STARTA PUSH</p>
-                </div>
-                <div class="program-card">
-                    <img src="/static/images/exercises/deadlift.jpg" alt="Pull pass">
-                    <p>STARTA PULL</p>
-                </div>
-                <div class="program-card">
-                    <img src="/static/images/exercises/squats.jpg" alt="Legs pass">
-                    <p>STARTA LEGS</p>
-                </div>
+                <a href="/start_category_program/push" class="program-card-link">
+                    <div class="program-card">
+                        <img src="/static/images/exercises/benchpress.jpg" alt="Push pass">
+                        <p>STARTA PUSH</p>
+                    </div>
+                </a>
+                <a href="/start_category_program/pull" class="program-card-link">
+                    <div class="program-card">
+                        <img src="/static/images/exercises/deadlift.jpg" alt="Pull pass">
+                        <p>STARTA PULL</p>
+                    </div>
+                </a>
+                <a href="/start_category_program/legs" class="program-card-link">
+                    <div class="program-card">
+                        <img src="/static/images/exercises/squats.jpg" alt="Legs pass">
+                        <p>STARTA LEGS</p>
+                    </div>
+                </a>
             </div>
         </main>
-
-        <aside class="right-panel">
-            <div class="info-box">
-                <h3>Inget pass aktivt</h3>
-                <p>Välj ett träningsprogram till vänster för att komma igång med din träning, eller klicka på 'Logga
-                    Pass' för att köra fritt.</p>
-            </div>
-        </aside>
 
     </div>
 

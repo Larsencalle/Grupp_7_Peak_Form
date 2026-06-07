@@ -13,7 +13,7 @@
             <p>PeakForm</p>
             <h1>Skapa konto</h1>
 
-            <a href="/dashboard" class="small-button">← Tillbaka</a>
+            <a href="/" class="small-button back-button">← Tillbaka</a>
             <div class="form-box">
                 <!--Visar felmeddelanden, tex om e-posten redan finns-->
                 {% with messages = get_flashed_messages() %}
@@ -41,15 +41,15 @@
                     <h3>Fysisk data (Valfritt)</h3>
                     <div class="form-group">
                         <label for="weight">Vikt (kg):</label>
-                        <input type="number" id="weight" name="weight">
+                        <input type="number" id="weight" name="weight" min="1" max="300">
                     </div>
                     <div class="form-group">
                         <label for="height">Längd (cm):</label>
-                        <input type="number" id="height" name="height">
+                        <input type="number" id="height" name="height" min="1" max="250">
                     </div>
                     <div class="form-group">
                         <label for="age">Ålder:</label>
-                        <input type="number" id="age" name="age">
+                        <input type="number" id="age" name="age" min="1" max="120">
                     </div>
 
                     <button type="submit" class="form-button">Skapa konto</button>
