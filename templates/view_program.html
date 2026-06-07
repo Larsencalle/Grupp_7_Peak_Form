@@ -12,6 +12,7 @@
 
     <div class="dashboard-layout">
 
+        <!--SIDOMENY-->
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
@@ -23,10 +24,11 @@
             </ul>
         </nav>
 
+        <!--HUVUDINNEHÅLL-->
         <main class="main-content">
             <div class="user-actions">
                 <span id="span1">Inloggad som medlem</span>
-                <a href="/log_out" class="small-button">Logga ut</a>
+                <a href="/log_out" class="small-button">Logga out</a>
             </div>
 
             <div class="back-link-container">
@@ -40,14 +42,15 @@
 
             <h2 class="green-text">Övningar i programmet</h2>
 
+            <!--LISTA MED BEFINTLIGA ÖVNINGAR-->
             <div class="stats-row program-cards-container">
                 {% if exercises %}
                 {% for exercise in exercises %}
                 <div class="program-card">
                     <div class="exercise-card-content">
 
-                        <a href="/exercise/{{ exercise[0] }}?from=program&program_id={{ program_id }}"
-                            class="exercise-card-link">
+                        <!--Länk till detaljvy-->
+                        <a href="/exercise/{{ exercise[0] }}?from=program&program_id={{ program_id }}" class="exercise-card-link">
                             <img src="/static/images/exercises/{{ exercise[3] }}" alt="{{ exercise[1] }}">
                             <div class="exercise-card-text">
                                 <p>{{ exercise[1] }}</p>
@@ -55,15 +58,14 @@
                             </div>
                         </a>
 
+                        <!--Formulär för att ta bort en övning-->
                         <div class="card-action-buttons border-top">
-                            <form action="/remove_exercise/{{ program_id }}/{{ exercise[0] }}" method="POST"
-                                class="delete-form full-width-form">
+                            <form action="/remove_exercise/{{ program_id }}/{{ exercise[0] }}" method="POST" class="delete-form full-width-form">
                                 <div class="confirm-checkbox">
                                     <input type="checkbox" id="remove_ex_{{ exercise[0] }}" name="confirm" required>
                                     <label for="remove_ex_{{ exercise[0] }}">Bekräfta borttagning</label>
                                 </div>
-                                <button type="submit" class="small-button danger-btn full-width-btn">Ta bort
-                                    övning</button>
+                                <button type="submit" class="small-button danger-btn full-width-btn">Ta bort övning</button>
                             </form>
                         </div>
 
@@ -71,6 +73,7 @@
                 </div>
                 {% endfor %}
                 {% else %}
+                <!--Visas om programmet är tomt-->
                 <div class="info-box empty-program-box">
                     <h3>Programmet är tomt</h3>
                     <p>Det finns inga övningar i det här programmet ännu.</p>
@@ -78,6 +81,7 @@
                 {% endif %}
             </div>
 
+            <!--DROPDOWN FÖR ATT LÄGGA TILL NYA ÖVNINGAR-->
             <div class="profile-box create-program-box add-exercise-box">
 
                 <details>
@@ -90,17 +94,12 @@
                         <form method="POST" action="/add_exercise/{{ program_id }}">
                             {% for available_exercise in available_exercises %}
                             <div class="checkbox-group">
-                                <input type="checkbox" id="add_ex_{{ available_exercise[0] }}" name="exercise_ids"
-                                    value="{{ available_exercise[0] }}">
+                                <input type="checkbox" id="add_ex_{{ available_exercise[0] }}" name="exercise_ids" value="{{ available_exercise[0] }}">
                                 <label for="add_ex_{{ available_exercise[0] }}">
                                     <strong>{{ available_exercise[1] }}</strong>
-
-                                    <span class="stat-subtitle">
-                                        ({{ available_exercise[2] }})
-                                    </span>
+                                    <span class="stat-subtitle">({{ available_exercise[2] }})</span>
                                 </label>
-                                <a href="/exercise/{{ available_exercise[0] }}?from=add_exercise&program_id={{ program_id }}"
-                                    class="info-link">Detaljer</a>
+                                <a href="/exercise/{{ available_exercise[0] }}?from=add_exercise&program_id={{ program_id }}" class="info-link">Detaljer</a>
                             </div>
                             {% endfor %}
 

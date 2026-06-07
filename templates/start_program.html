@@ -12,6 +12,7 @@
 
     <div class="dashboard-layout">
 
+        <!--SIDOMENY-->
         <nav class="sidebar">
             <h2>PeakForm</h2>
             <ul>
@@ -23,6 +24,7 @@
             </ul>
         </nav>
 
+        <!--HUVUDINNEHÅLL-->
         <main class="main-content">
             <div class="user-actions">
                 <span id="span1">Inloggad som medlem</span>
@@ -39,13 +41,15 @@
             {% if active_exercise %}
             <h2 class="green-text">Nuvarande övning</h2>
 
+            <!--VY FÖR AKTIV ÖVNING-->
             <div class="active-exercise-focus-wrapper">
                 <h1 class="focus-exercise-main-title">{{ active_exercise[1] }}</h1>
 
                 <div class="exercise-image focus-green-border">
-                    <img src="/static/images/exercises/{{ active_exercise[5] }}" alt="{{ active_exercise[1] }}"
-                        class="focus-large-img">
+                    <img src="/static/images/exercises/{{ active_exercise[5] }}" alt="{{ active_exercise[1] }}" class="focus-large-img">
                 </div>
+                
+                <!--VILOTIMER-->
                 <div class="timer-container">
                     <h3>Vilo-timer</h3>
                     <div id="chronoExample">
@@ -64,6 +68,8 @@
                         </div>
                     </div>
                 </div>
+                
+                <!--ÖVNINGSINFORMATION-->
                 <div class="exercise-info">
                     <div class="exercise-meta">
                         <p><strong>Kategori:</strong> {{ active_exercise[3] }}</p>
@@ -83,6 +89,8 @@
                         <h3>Beskrivning</h3>
                         <p>{{ active_exercise[2] }}</p>
                     </div>
+                    
+                    <!--FORMULÄR FÖR ATT LOGGA SET-->
                     <div class="log-set-box">
                         <h3 class="log-set-title">Logga set</h3>
 
@@ -96,11 +104,9 @@
                             <input type="hidden" name="program_id" value="{{ program_id }}">
                             <input type="hidden" name="exercise_id" value="{{ active_exercise[0] }}">
 
-                            <input type="number" name="weight" placeholder="Vikt (kg)" step="0.5" min="0" max="999"
-                                required class="log-set-input">
+                            <input type="number" name="weight" placeholder="Vikt (kg)" step="0.5" min="0" max="999" required class="log-set-input">
 
-                            <input type="number" name="reps" placeholder="Reps" min="1" max="999" required
-                                class="log-set-input">
+                            <input type="number" name="reps" placeholder="Reps" min="1" max="999" required class="log-set-input">
 
                             <button type="submit" class="small-button green log-set-btn">Spara set</button>
                         </form>
@@ -108,27 +114,26 @@
                 </div>
             </div>
 
+            <!--NAVIGERING MELLAN ÖVNINGAR-->
             <div class="nav-container">
 
                 {% if current_index > 0 %}
-                <a href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index - 1][0] }}"
-                    class="form-button">
+                <a href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index - 1][0] }}" class="form-button">
                     ← Föregående övning
                 </a>
                 {% endif %}
 
-                {% if current_index < total_exercises - 1 %} <a
-                    href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index + 1][0] }}"
-                    class="form-button status-active">
+                {% if current_index < total_exercises - 1 %} 
+                <a href="/start_program/{{ program_id }}?exercise_id={{ exercises[current_index + 1][0] }}" class="form-button status-active">
                     Nästa övning →
-                    </a>
-                    {% else %}
-                    <span class="form-button status-done">
-                        Passet avklarat!
-                    </span>
-                    {% endif %}
+                </a>
+                {% else %}
+                <span class="form-button status-done">
+                    Passet avklarat!
+                </span>
+                {% endif %}
 
-                    <a href="/end_workout" class="small-button-red">Avsluta passet</a>
+                <a href="/end_workout" class="small-button-red">Avsluta passet</a>
             </div>
 
             {% else %}
@@ -140,6 +145,7 @@
         </main>
     </div>
 
+    <!--Kopplar in vår externa javascript-fil för timern-->
     <script src="/static/timer-countdown.js"></script>
 </body>
 

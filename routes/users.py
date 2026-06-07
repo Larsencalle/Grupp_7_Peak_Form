@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session, flash
 from db import get_db_connection
-#from utils import login_required
 
 users_bp = Blueprint('users', __name__)
 
@@ -17,6 +16,7 @@ def dashboard():
         conn = get_db_connection()
         cur = conn.cursor()
         
+        # Räknar ut hur många pass som har gjorts denna månad
         cur.execute("""
             SELECT COUNT(*) FROM peakform.workout_session 
             WHERE user_id = %s 
@@ -85,6 +85,7 @@ def update_profile():
     height = request.form.get('height')
     age = request.form.get('age')
 
+    # Hanterar tomma fält så att de sparas som NULL i databasen
     weight = weight if weight else None
     height = height if height else None
     age = age if age else None

@@ -16,7 +16,6 @@ def exercise():
     
     cursor = conn.cursor()
 
-
     cursor.execute("""
         SELECT DISTINCT category
         FROM peakform.exercise
@@ -74,7 +73,7 @@ def search():
         return "Kunde inte ansluta till databasen"
     
     cursor = conn.cursor()
-    
+    # Använder ILIKE för att söka oavsett stora/små bokstäver
     sql = """
     SELECT exercise_id, name, description, category, difficulty_level, image_url 
     FROM peakform.exercise 

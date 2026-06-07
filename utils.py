@@ -1,9 +1,14 @@
 from db import get_db_connection
 
 def get_workout_history(user_id):
+    """
+    Hämtar en inloggad användares hela träningshistorik från databasen.
+    Returnerar en lista med alla pass, övningar och utförda set.
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
 
+    # Kopplar ihop pass, set och övningar och sorterar på nyast datum först
     sql = """
         SELECT
             ws.session_id,

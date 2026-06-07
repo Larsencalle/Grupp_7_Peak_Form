@@ -20,11 +20,12 @@ img {
 }
 
 
-/* LOGIN / REGISTER SPLIT LAYOUT */
+/* LAYOUT - LOGGA IN / SKAPA KONTO */
 
 .split-layout {
     display: flex;
     height: 100vh;
+    position: relative;
 }
 
 .split-layout section {
@@ -61,6 +62,8 @@ img {
 
 .text-box {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -69,6 +72,7 @@ img {
     align-items: center;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
 }
 
 .text-box h1 {
@@ -1010,15 +1014,15 @@ img {
 /* RESPONSIV DESIGN - MOBIL ANPASSNING */
 
 @media screen and (max-width: 480px) {
-    /* Login / Register */
+    /* Logga in / Skapa konto */
     .split-layout {
         flex-direction: column;
-        height: auto;
+        height: 100vh;
     }
 
     .split-layout section {
         width: 100%;
-        min-height: 50vh;
+        flex: 1;
     }
 
     .left-section h1 {
@@ -1051,9 +1055,13 @@ img {
     }
 
     .split-layout nav {
-        position: static;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
         text-align: center;
-        margin: 20px 0;
+        margin: 0;
+        z-index: 50;
     }
 
     .split-layout nav a {
@@ -1061,7 +1069,7 @@ img {
         margin: 10px;
     }
 
-    /* Dashboard Layout */
+    /* Layout för Dashboard */
     .dashboard-layout {
         flex-direction: column;
         height: auto;
@@ -1102,7 +1110,7 @@ img {
         overflow-x: hidden;
     }
 
-    /* Dashboard Cards */
+    /* Informationskort för Dashboard */
     .stats-row {
         flex-direction: column;
         gap: 10px;
@@ -1132,7 +1140,7 @@ img {
         margin: 0px;
     }
 
-    /* User Actions */
+    /* Användarknappar*/
     .user-actions {
         display: flex;
         justify-content: flex-end;
@@ -1157,19 +1165,19 @@ img {
     }
 
 
-    /* Headings */
+    /* Rubriker */
     h1 {
         margin-top: 40px;
         text-align: center;
     }
 
-    /* Profile Box */
+    /* Profilruta */
     .profile-box {
         width: auto;
         margin-top: 40px;
     }
 
-    /* Program Header */
+    /* Program-sidhuvud */
     .program-header {
         flex-direction: column;
         gap: 15px;
@@ -1180,13 +1188,13 @@ img {
         text-align: center;
     }
 
-    /* Checkboxes */
+    /* Kryssrutor */
     .confirm-checkbox {
         justify-content: center;
         font-size: 1.3rem;
     }
 
-    /* Additional Mobile Elements */
+    /* Övriga anpassningar för mobil */
     .small-button.danger-btn {
         width: 100%;
         text-align: center;
