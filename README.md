@@ -1,6 +1,5 @@
 PeakForm
 Repository (GitHub): https://github.com/Larsencalle/Grupp_7_Peak_Form
-Release ID: Slutlig inlämning (Final)
 Datum för inlämning: Juni 2026
 Grupp: Grupp 7
 
