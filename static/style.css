@@ -1134,15 +1134,28 @@ img {
 
     /* User Actions */
     .user-actions {
-        justify-content: right;
-        flex-direction: column;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
     }
-    
-    .user-actions a {
+
+    .user-actions span {
+        line-height: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .user-actions .small-button {
         width: auto;
-        margin: 5px 0;
-        color: rgb(244, 68, 68);
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
+
 
     /* Headings */
     h1 {
