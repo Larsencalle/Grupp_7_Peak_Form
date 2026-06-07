@@ -1134,10 +1134,10 @@ img {
 
     /* User Actions */
     .user-actions {
-        justify-content: center;
+        justify-content: right;
         flex-direction: column;
     }
-
+    
     .user-actions a {
         width: auto;
         margin: 5px 0;
@@ -1203,5 +1203,9 @@ img {
 
     .category-filter-form .small-button {
         width: 100%;
+    }
+
+    .log-workout-box {
+        flex-direction: column-reverse;
     }
 }
